@@ -7,7 +7,6 @@ class Bullets extends Component {
         document.querySelector('#cursor').addEventListener('click', function (evt) {
             setTimeout(() => {
             let camera = document.querySelector("#camera");
-
             let position = evt.detail.intersection.point;
             let rotation = camera.getAttribute('rotation');
             let newBullets = document.createElement('a-entity');
@@ -20,21 +19,11 @@ class Bullets extends Component {
             let radian = -(rotation.y * (Math.PI / 180));
             let new_z = (20 * Math.cos(radian));
             let new_x = (20 * Math.sin(radian));
-            console.log(rotation)
 
             animation.setAttribute('attribute', 'position');
             animation.setAttribute('from', `${position.x} ${position.y} ${position.z}`);
-            if (rotation.x <= 2) {
-                console.log("x less than 5")
-                animation.setAttribute('to', `${new_x} ${rotation.x} ${-new_z}`) 
-            } else if (rotation.x >=2 && rotation.x < 10) {
-                animation.setAttribute('to', `${new_x} ${rotation.x - 4} ${-new_z}`) 
-            } else {
-                console.log("x greater than 5")
-                animation.setAttribute('to', `${new_x} ${rotation.x - 10} ${-new_z}`);
-            }
-
-            animation.setAttribute('dur', '2000');
+            animation.setAttribute('to', `${new_x} ${rotation.x} ${-new_z}`)
+            animation.setAttribute('dur', '750');
             animation.setAttribute('repeat', '0');
             newBullets.appendChild(animation);
         }, 75);
