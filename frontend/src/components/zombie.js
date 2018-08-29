@@ -8,28 +8,24 @@ class Zombie extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      hit: false,
       health: 10,
-      position: `${props.pX} ${props.pY} ${props.pZ}`,
+      position: `${props.pX} ${props.pY} ${props.pZ}`
     }
     this.decremHealth = this.decremHealth.bind(this);
-    this.move = this.move.bind(this);
-  }
-
-  componentDidMount () {
-    this.move();
-  }
-
-
-  move () {
-    let times = 20;
-    for (let i = 0; i < times; i++) {
-      this.setState({ position: `${this.props.pX} ${this.props.pY} ${parseInt(this.props.pZ) + this.props.inc}` })
-      console.log(this.state.position)
-    }
+    this.collide = this.collide.bind(this);
   }
 
   decremHealth () {
     this.setState({health: this.state.health - 1})
+  }
+
+  collide (e) {
+    debugger;
+    if (e.detail.body.id === this.body.id && !this.state.hit) {
+        this.setState({hit: true});
+        this.decremHealth();
+      }
   }
 
   render() {
@@ -42,9 +38,9 @@ class Zombie extends Component {
         position={this.state.position}
         id="zombie"
         animation-mixer
-        dynamic-body
+        // dynamic-body
       >
-      <a-animation attribute="position" from="1 1 -6" dur="4000" to="1 1 -1" repeat="0"/>
+      <a-animation attribute="position" from="1 1 -6" dur="4000" to="1 1 -2.5" repeat="0"/>
       </a-gltf-model>
     )
   }

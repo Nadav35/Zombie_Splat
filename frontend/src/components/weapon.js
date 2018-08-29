@@ -11,13 +11,11 @@ class Weapon extends Component {
         position="0 0 -3"
         id="weapon">
         <a-mixin
-          id="bullets" geometry="primitive: sphere;"
-          radius=".3"
-          scale=".2 .2 .2" color="green"
+          id="bullets" 
+          geometry="primitive: sphere; radius: .1;"
           static-body
         >
         </a-mixin>
-
         <a-box 
           id="cube"
           color='blue' 

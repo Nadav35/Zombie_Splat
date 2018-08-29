@@ -12,7 +12,6 @@ class Bullets extends Component {
                     let rotation = camera.getAttribute('rotation');
                     let newBullets = document.createElement('a-entity');
                     newBullets.setAttribute('mixin', 'bullets');
-                    newBullets.setAttribute('radius', '0.5')
                     let parent = document.querySelector("#scene");
                     parent.appendChild(newBullets);
                     let animation = document.createElement('a-animation');
@@ -31,8 +30,8 @@ class Bullets extends Component {
                         animation.setAttribute('to', `${new_x} ${rotation.x - 6} ${-new_z}`)
                     } else if (rotation.x > 20) {
                         animation.setAttribute('to', `${new_x} ${rotation.x - 10} ${-new_z}`)
-                    } else if (rotation.x < 0) {
-                        animation.setAttribute('to', `${new_x} ${rotation.x + 5} ${-new_z}`)
+                    } else if (rotation.x < -1) {
+                        animation.setAttribute('to', `${new_x} ${rotation.x + 2} ${-new_z}`)
                     }
                     animation.setAttribute('dur', '750');
                     animation.setAttribute('repeat', '0');
@@ -44,7 +43,6 @@ class Bullets extends Component {
     render() {
         return (
         <a-entity>
-           
         </a-entity>
         )
     }

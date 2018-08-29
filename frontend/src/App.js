@@ -18,7 +18,7 @@ class App extends Component {
 
   render() {
     return (
-      <a-scene physics-debugger="true" id="scene">
+      <a-scene physics="debug: true" id="scene">
         <Sky />
         <Camera />
         <Bullets/>
