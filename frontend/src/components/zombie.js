@@ -35,6 +35,7 @@ class Zombie extends Component {
   render() {
     return (
       <a-gltf-model
+        className="zombie"
         physics-collider
         scale="0.5 0.5 0.5"
         src={zombie}

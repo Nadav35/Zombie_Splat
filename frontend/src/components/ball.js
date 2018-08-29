@@ -24,9 +24,8 @@ class Ball extends Component {
     clearTimeout(this.state.resetId)
     this.props.$("#ball").body.position.set(0, 0.6, -4);
     this.props.$("#ball").body.velocity.set(0, 5, 0);
-    this.props.$("#ball").body.angularVelocity.set(0, 0, 0);
     this.setState({hit: false});
-    setTimeout(this.resetBall, 6000)
+    setTimeout(this.resetBall, 6000);
   }
 
   render() {

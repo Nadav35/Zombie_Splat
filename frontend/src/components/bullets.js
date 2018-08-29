@@ -12,7 +12,7 @@ class Bullets extends Component {
                     let rotation = camera.getAttribute('rotation');
                     let newBullets = document.createElement('a-entity');
                     newBullets.setAttribute('mixin', 'bullets');
-                    newBullets.setAttribute('dynamic-body');
+                    newBullets.setAttribute('radius', '0.5')
                     let parent = document.querySelector("#scene");
                     parent.appendChild(newBullets);
                     let animation = document.createElement('a-animation');
@@ -43,10 +43,8 @@ class Bullets extends Component {
     }
     render() {
         return (
-        <a-entity
-            position="0 1 -3"
-            id="weapon">
-              <a-sphere color="green" visible="false" radius="0.1"></a-sphere>
+        <a-entity>
+           
         </a-entity>
         )
     }

@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
 import AFRAME from 'aframe';
 import 'aframe-physics-system';
+import 'aframe-extras';
 import Bullets from './bullets';
 class Weapon extends Component {
 
-  componentDidMount() {
-   
-  }
-  
   render () {
     return (
-
       <a-entity
         position="0 0 -3"
         id="weapon">
-        <a-mixin id="bullets" geometry="primitive: sphere;"
-          scale=".2 .2 .2" color="green" static-body
+        <a-mixin
+          id="bullets" geometry="primitive: sphere;"
+          scale=".2 .2 .2" color="green"
+          static-body
         >
         </a-mixin>
 
