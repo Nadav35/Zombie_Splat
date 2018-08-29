@@ -1,5 +1,5 @@
 import axios from 'axios';
-import jwt_decode from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 
 const $ = window.$;
 export const GET_ERRORS = 'GET_ERRORS';
@@ -29,7 +29,7 @@ export const registerUser = (userData, history) => dispatch => {
       // Set token to Auth header
       setAuthToken(token);
       // Decode token to get user data
-      const decoded = jwt_decode(token);
+      const decoded = jwtDecode(token);
       // Set current user
       dispatch(setCurrentUser(decoded));
     })
@@ -53,7 +53,7 @@ export const loginUser = userData => dispatch => {
       // Set token to Auth header
       setAuthToken(token);
       // Decode token to get user data
-      const decoded = jwt_decode(token);
+      const decoded = jwtDecode(token);
       // Set current user
       dispatch(setCurrentUser(decoded));
     })
