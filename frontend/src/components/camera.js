@@ -9,7 +9,7 @@ class Camera extends Component {
       <a-entity id="camera" camera look-controls position="0 1.5 0">
         <a-cursor 
         id="cursor"
-        position="0 .3 -1"
+        // position="0 .05 -1"
         ></a-cursor>
         <a-entity id="raycaster" raycaster="far: 1" position="1 1 -2" showLine="true"></a-entity>
         <GameState />
