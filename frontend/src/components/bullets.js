@@ -38,8 +38,9 @@ class Bullets extends Component {
             newBullets.appendChild(animation);
             }, 75);
           }
-      })     
+      })
     }
+
     render() {
         return (
         <a-entity>
