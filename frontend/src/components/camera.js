@@ -8,7 +8,7 @@ class Camera extends Component {
     return (
       <a-entity id="camera" camera look-controls position="0 1.5 0">
         <a-cursor id="cursor"></a-cursor>
-        {/* <Controller /> */}
+        <a-entity id="raycaster" raycaster="far: 1" position="1 1 -2" showLine="true"></a-entity>
         <GameState />
         <Weapon />
       </a-entity>
@@ -16,4 +16,4 @@ class Camera extends Component {
   }
 }
 
-export default Camera;
+export default Camera
