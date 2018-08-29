@@ -5,7 +5,7 @@ import 'aframe-physics-system';
 class Ball extends Component {
   constructor (props) {
     super(props);
-
+    
     this.state = {
       position: "0 1 -4",
       health: "10",

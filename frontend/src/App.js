@@ -19,7 +19,8 @@ class App extends Component {
   render() {
     return (
       <a-scene physics="debug: true" id="scene">
-        <Sky />
+        <a-entity environment="preset: arches; ground: spikes;"></a-entity>
+        {/* <Sky /> */}
         <Camera />
         <Bullets/>
         <Ball/>
