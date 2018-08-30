@@ -3,7 +3,6 @@ import 'aframe';
 import 'aframe-physics-system';
 import {Entity} from 'aframe-react';
 
-
 class Bullets extends Component {
   constructor(props) {
     super(props);
@@ -57,8 +56,6 @@ class Bullets extends Component {
       </a-entity>
       )
   }
-
-
 };
 
 export default Bullets;
