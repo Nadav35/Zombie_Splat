@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'aframe';
 import './App.css';
 import 'aframe-environment-component';
+import {Entity, Scene} from 'aframe-react';
 
 import Camera from './components/camera';
 import Ball from './components/ball';
@@ -22,6 +23,13 @@ class App extends Component {
         <a-entity environment="preset: arches; ground: spikes;"></a-entity>
         {/* <Sky /> */}
         <Camera />
+        <Entity
+          dynamic-body
+          geometry={{ primitive: 'box' }} 
+          material={{ color: 'red' }} 
+          position={{ x: 1, y: 1, z: -5}}
+          events={{collide: (e) => console.log(e)}}
+        />
         <Bullets/>
         <Ball/>
         <Zombie pX={"1"} pY={"1"} pZ={"-3"} inc={.1}/>

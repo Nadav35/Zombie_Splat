@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import AFRAME from 'aframe';
 import 'aframe-physics-system';
+import {Entity} from 'aframe-react';
 import 'aframe-extras';
 import Bullets from './bullets';
 class Weapon extends Component {
 
   render () {
     return (
-      <a-entity
+      <Entity
         position="0 0 -3"
         id="weapon">
         <a-mixin
@@ -26,7 +27,7 @@ class Weapon extends Component {
           static-body
         ></a-box>
         <Bullets />
-      </a-entity>
+      </Entity>
     )
   }
 }
