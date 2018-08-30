@@ -8,7 +8,9 @@ class Zombie extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      hit: false,
       health: 10,
+
       position: `${props.pX} ${props.pY} ${props.pZ}`,
       hit: false
     }
@@ -43,15 +45,25 @@ class Zombie extends Component {
       this.setState({ position: `${this.props.pX} ${this.props.pY} ${parseInt(this.props.pZ) + this.props.inc}` })
       console.log(this.state.position)
     }
+
   }
 
   decremHealth () {
     this.setState({health: this.state.health - 1})
   }
 
+  collide (e) {
+   
+    if (e.detail.body.id === this.body.id && !this.state.hit) {
+        this.setState({hit: true});
+        this.decremHealth();
+      }
+  }
+
   render() {
 
     return (
+
       <a-entity
           geometry="primitive: box;"
           material= "side: double; transparent: true; opacity: 0; "
@@ -65,6 +77,7 @@ class Zombie extends Component {
         body="type: dynamic; mass: 5;"
         id="zombie" animation-mixer></Entity>
       </a-entity>
+
     )
   }
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'aframe';
 import './App.css';
 import 'aframe-environment-component';
+import {Entity, Scene} from 'aframe-react';
 
 import Camera from './components/camera';
 import Ball from './components/ball';
@@ -22,6 +23,7 @@ class App extends Component {
   }W
   render() {
     return (
+
       <a-scene physics="debug:true;" id="scene">
         <a-assets>
             <a-mixin
@@ -34,6 +36,7 @@ class App extends Component {
         </a-assets>
         <a-entity environment="preset: arches;"></a-entity>
         <Sky />
+
         <Camera />
         <Bullets/>
         <Ball/>
