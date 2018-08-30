@@ -46,7 +46,7 @@ class Bullets extends Component {
           if (bulletZ == -new_z) {
             setTimeout(() => newBullets.parentEl.removeChild(newBullets), 500)
           }
-          }, 75);
+          }, 500);
         }
     })
   }
