@@ -17,6 +17,10 @@ class Bullets extends Component {
           let rotation = camera.getAttribute('rotation');
           let newBullets = document.createElement('a-entity')
           newBullets.setAttribute('mixin', 'bullets');
+<<<<<<< HEAD
+=======
+          // newBullets.setAttribute('class', 'bullet-sphere');
+>>>>>>> 38f8f59c1d23a838d5d6797733ceb5dbf74411f5
           newBullets.setAttribute('id', 'bullets');
           let parent = document.querySelector("#scene");
           parent.appendChild(newBullets);
@@ -43,7 +47,12 @@ class Bullets extends Component {
           newBullets.appendChild(animation);
           let bulletZ = newBullets.getAttribute("data");
           if (bulletZ == -new_z) {
-            setTimeout(() => {if (newBullets.parentEl) newBullets.parentEl.removeChild(newBullets)}, 500)
+            setTimeout(() => {
+              if(newBullets.parentEl) {
+                newBullets.parentEl.removeChild(newBullets)
+              }
+            },500);
+            
           }
           }, 500);
         }
