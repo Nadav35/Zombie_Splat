@@ -9,16 +9,13 @@ require('./config/passport')(passport);
 const app = express();
 
 // Connect the database
-const db = require('./config/keys').mongoURI;
+const db = require('./config/keys').prodMongoURI;
 
 mongoose.connect(db, {
     useNewUrlParser: true
 })
   .then(() => console.log("Connected to mongo"))
   .catch(err => console.log(err));
-
-
-
 
 
 app.use(bodyParser.urlencoded({
