@@ -21,15 +21,7 @@ class App extends Component {
     return (
       <a-scene physics="debug: true" id="scene">
         <a-entity environment="preset: arches; ground: spikes;"></a-entity>
-        {/* <Sky /> */}
         <Camera />
-        <Entity
-          dynamic-body
-          geometry={{ primitive: 'box' }} 
-          material={{ color: 'red' }} 
-          position={{ x: 1, y: 1, z: -5}}
-          events={{collide: (e) => console.log(e)}}
-        />
         <Bullets/>
         <Ball/>
         <Zombie pX={"1"} pY={"1"} pZ={"-3"} inc={.1}/>
