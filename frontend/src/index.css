@@ -3,3 +3,17 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+h1 {
+  font-size: 40px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: red; 
+}
+
+.welcome-page {
+  text-align: center;
+  background: #ccc;
+  min-height: 75vh;
+
+  
+}

@@ -13,7 +13,7 @@ import Zombie from './components/zombie';
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
