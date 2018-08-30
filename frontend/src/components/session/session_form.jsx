@@ -22,28 +22,32 @@ class SessionForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    debugger
+    const user = merge({}, this.state);
+    this.props.processForm(user).then(() => this.props.history.push("/game"));
   }
 
   render() {
+    const nameInput = this.props.formType === 'Login' ? 
+      "" : <div className="name-div">
+        <label htmlFor="name-input">Name</label>
+        <input
+          className="name-input"
+          value={this.state.name}
+          placeholder="Enter your name"
+          onChange={this.update('name')}
+          type="text" />
+        <i className="fas fa-user"></i>
+      </div>;
     return (
       <div className="welcome-page">
         <h1>Welcome to Zombiesplat</h1>
+        <img src="./zombie.gif" />
         <div className="session-container">
           <form className="session-form"
             onSubmit={this.handleSubmit}>
-            <h1>{this.props.formType}</h1>
+            <h2>{this.props.formType}</h2>
 
-            <div className="name-div">
-              <label htmlFor="name-input">Name</label>
-              <input 
-              className="name-input"
-              value={this.state.name}
-              placeholder="Enter your name"
-              onChange={this.update('name')}
-              type="text"/>
-              <i className="fas fa-user"></i>
-            </div>
+            {nameInput}
             
             <div className="email-div">
               <label htmlFor="email-input">Email</label>
