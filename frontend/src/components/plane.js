@@ -10,7 +10,7 @@ class Plane extends Component {
         rotation="-90 0 0"
         width="150"
         height="150"
-        material="color:#52430e;"
+        opacity="0"
         static-body
       >
       </a-plane>

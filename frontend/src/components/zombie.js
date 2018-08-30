@@ -3,22 +3,39 @@ import 'aframe';
 import 'aframe-physics-system';
 import 'aframe-extras';
 import zombie from '../models/zombie/zombie.gltf'
-
+import {Entity} from 'aframe-react';
 class Zombie extends Component {
   constructor(props) {
     super(props);
     this.state = {
       health: 10,
       position: `${props.pX} ${props.pY} ${props.pZ}`,
+      hit: false
     }
     this.decremHealth = this.decremHealth.bind(this);
     this.move = this.move.bind(this);
+ 
   }
 
+  
   componentDidMount () {
-    this.move();
+    document.querySelector("#zombie-hitbox").addEventListener("collide", (e) => {
+      if(e.detail.body.el.getAttribute('id') === "bullets") {
+        this.setState({health: this.state.health - 1});
+      }
+      if(this.state.health <= 0) {
+        setTimeout(function () {
+          if(e.detail.target.el) {
+            e.detail.target.el.parentNode.removeChild(e.detail.target.el);
+          }
+          if(e.detail.body.el) {
+            e.detail.body.el.parentNode.removeChild(e.detail.body.el);
+          }
+        }, 0);
+      }
+    })
+    
   }
-
 
   move () {
     let times = 20;
@@ -33,19 +50,21 @@ class Zombie extends Component {
   }
 
   render() {
+
     return (
-      <a-gltf-model
-        className="zombie"
-        physics-collider
-        scale="0.5 0.5 0.5"
-        src={zombie}
-        position={this.state.position}
-        id="zombie"
-        animation-mixer
-        dynamic-body
-      >
-      <a-animation attribute="position" from="1 1 -6" dur="4000" to="1 1 -1" repeat="0"/>
-      </a-gltf-model>
+      <a-entity
+          geometry="primitive: box;"
+          material= "side: double; transparent: true; opacity: 0; "
+          id="zombie-hitbox"
+
+          dynamic-body="mass: 50"
+          // scale="0.5 0.5 0.5"
+          position={this.state.position}
+          >
+        <Entity gltf-model={zombie} 
+        body="type: dynamic; mass: 5;"
+        id="zombie" animation-mixer></Entity>
+      </a-entity>
     )
   }
 }

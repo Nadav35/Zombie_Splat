@@ -15,7 +15,7 @@ class Ball extends Component {
     this.decreaseHealth = this.decreaseHealth.bind(this);
     this.resetBall = this.resetBall.bind(this);
   }
-
+ 
   decreaseHealth() {
     this.setState({health: this.state.health - 1})
   }
@@ -35,8 +35,7 @@ class Ball extends Component {
        position={this.state.position}
        material="color:green;"
        geometry="primitive:sphere; radius:0.5;"
-       dynamic-body
-      >
+       dynamic-body>
       </a-entity>
     );
   }

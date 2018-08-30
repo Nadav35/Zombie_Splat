@@ -15,10 +15,24 @@ class App extends Component {
   constructor(props) {
     super(props)
   }
-
+  componentDidMount() {
+    document.querySelector('#weapon').addEventListener('collide', function (evt) {
+      console.log('helloAWEFAWJIFEAEFJWAEJ1');
+    });
+  }W
   render() {
     return (
-      <a-scene physics-debugger="true" id="scene">
+      <a-scene physics="debug:true;" id="scene">
+        <a-assets>
+            <a-mixin
+            id="bullets"
+            physics-collider
+            geometry="primitive: sphere;  radius: .2;"
+            color="green"
+            static-body>
+          </a-mixin>
+        </a-assets>
+        <a-entity environment="preset: arches;"></a-entity>
         <Sky />
         <Camera />
         <Bullets/>

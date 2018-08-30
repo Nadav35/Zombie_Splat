@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import 'aframe';
 import Weapon from './weapon';
 import GameState from './game_state';
+import 'aframe-physics-system';
 import Controller from './controller';
 class Camera extends Component {
   render() {
     return (
-      <a-entity id="camera" camera look-controls position="0 1.5 0">
+      <a-entity id="camera" dynamic-body camera look-controls wasd-controls position="0 1.5 0">
         <a-cursor 
         id="cursor"
         // position="0 .05 -1"
