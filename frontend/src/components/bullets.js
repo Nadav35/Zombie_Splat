@@ -32,7 +32,6 @@ class Bullets extends Component {
             animation.setAttribute('to', `${new_x} ${rotation.x + 2} ${-new_z}`)
           } else if (rotation.x > 4 && rotation.x < 9) {
               animation.setAttribute('to', `${new_x} ${rotation.x - .9} ${-new_z}`)
-              console.log('reduced traject', rotation.x - .8)
           } else if (rotation.x > 11 && rotation.x < 20) {
               animation.setAttribute('to', `${new_x} ${rotation.x - 10} ${-new_z}`)
           } else if (rotation.x > 20) {
