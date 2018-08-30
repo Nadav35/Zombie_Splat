@@ -13,7 +13,8 @@ class Bullets extends Component {
       if (evt.keyCode === 32) {
         setTimeout(() => {
           let camera = document.querySelector("#camera");
-          let position = {x:-.5, y:.5, z: -1}
+          let cursor = document.querySelector("#cursor");
+          let position = cursor.object3D.getWorldPosition();
           let rotation = camera.getAttribute('rotation');
           let newBullets = document.createElement('a-entity')
           newBullets.setAttribute('mixin', 'bullets');
