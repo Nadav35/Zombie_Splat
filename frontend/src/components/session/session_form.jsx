@@ -36,57 +36,61 @@ class SessionForm extends React.Component {
           placeholder="Enter your name"
           onChange={this.update('name')}
           type="text" />
-        <i className="fas fa-user"></i>
+        {/* <i className="fas fa-user"></i> */}
       </div>;
     return (
       <div className="welcome-page">
         <h1>Welcome to Zombiesplat</h1>
-        <img src="./zombie.gif" />
+        
         <div className="session-container">
-          <form className="session-form"
-            onSubmit={this.handleSubmit}>
-            <h2>{this.props.formType}</h2>
+          <div className="session-form">
+            <form className="form"
+              onSubmit={this.handleSubmit}>
+              <h2>{this.props.formType}</h2>
 
-            {nameInput}
-            
-            <div className="email-div">
-              <label htmlFor="email-input">Email</label>
-              <input 
-              className="email-input"
-              value={this.state.email}
-              placeholder="Enter your email"
-              onChange={this.update('email')}
-              type="text"/>
-              <i className="fas fa-envelope-square"></i>
-            </div>
-            
-            <div className="password-div">
-              <label htmlFor="password-input">Password</label>
-              <input 
-              className="password-input"
-              value={this.state.password}
-              placeholder="Enter your password"
-              onChange={this.update('password')}
-              type="password"/>
-              <i className="fas fa-unlock"></i>
-            </div>
-            
-            <div className="form-submit">
-              <button className="submit-button">
-                {this.props.formType}
-              </button>
-            
-            </div>
+              {nameInput}
+              
+              <div className="email-div">
+                <label htmlFor="email-input">Email</label>
+                <input 
+                className="email-input"
+                value={this.state.email}
+                placeholder="Enter your email"
+                onChange={this.update('email')}
+                type="text"/>
+                {/* <i className="fas fa-envelope-square"></i> */}
+              </div>
+              
+              <div className="password-div">
+                <label htmlFor="password-input">Password</label>
+                <input 
+                className="password-input"
+                value={this.state.password}
+                placeholder="Enter your password"
+                onChange={this.update('password')}
+                type="password"/>
+                {/* <i className="fas fa-unlock"></i> */}
+              </div>
+              
+              <div className="form-submit">
+                <button className="submit-button">
+                  {this.props.formType}
+                </button>
+              
+              </div>
 
-            <div className="form-footer">
-              <p>
-                {this.props.navLink} instead
-              </p>
-            
-            </div>
+              <div className="form-footer">
+                
+                <aside>or</aside>{this.props.navLink} 
+                
+              
+              </div>
 
-          </form>
-
+            </form>
+          </div>
+          <div className="zombie">
+            <img src="./zombie.gif" />
+          </div>
         </div>
         
       </div>

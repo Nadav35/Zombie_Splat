@@ -20,7 +20,7 @@ class App extends Component {
     document.querySelector('#weapon').addEventListener('collide', function (evt) {
       console.log('helloAWEFAWJIFEAEFJWAEJ1');
     });
-  }W
+  }
   render() {
     return (
 
