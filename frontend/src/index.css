@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  
 }
 
 h1 {
@@ -10,10 +11,86 @@ h1 {
   color: red; 
 }
 
+h2 {
+  font-size: 35px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: red;
+}
+
 .welcome-page {
   text-align: center;
-  background: #ccc;
+  /* background: #ccc; */
   min-height: 75vh;
+
+  
+}
+
+.zombie {
+  position: relative;
+  animation-name: move;
+  animation-duration: 60s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes move {
+  0% {right: -500px;}
+  100% {right: 200px;}
+}
+
+.session-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 20px;
+}
+
+.session-form {
+  border-right: 1px solid lightblue;
+}
+
+input {
+  padding: 10px;
+}
+
+.form{
+  display: grid;
+  grid-gap: 20px;
+  /* background: lightcoral; */
+  text-align: center;
+  
+  justify-items: center;
+
+}
+
+.form div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-family: cursive;
+  font-size: 20px;
+  
+}
+
+button {
+  background-color: #333;
+  color: #fff;
+  padding: 0.6rem 1.3rem;
+  text-decoration: none;
+  border: 0;
+}
+
+.form-footer aside{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 23px;
+}
+
+
+
+
+
+a {
+  text-decoration: none;
+  /* align-self: center; */
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 23px;
 
   
 }
