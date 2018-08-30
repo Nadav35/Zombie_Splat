@@ -7,7 +7,7 @@ import Controller from './controller';
 class Camera extends Component {
   render() {
     return (
-      <a-entity id="camera" dynamic-body camera look-controls  position="0 1.5 0">
+      <a-entity id="camera" camera look-controls  position="0 1.5 0">
         <a-cursor 
         id="cursor"
         // position="0 .05 -1"
