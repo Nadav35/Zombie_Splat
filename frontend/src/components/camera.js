@@ -7,11 +7,7 @@ import Controller from './controller';
 class Camera extends Component {
   render() {
     return (
-<<<<<<< HEAD
-      <a-entity id="camera" camera look-controls position="0 1.5 0">
-=======
       <a-entity id="camera" camera look-controls  position="0 1.5 0">
->>>>>>> 580a5bc71c9a3c27a7034f3c1b1a9c7cef4dd517
         <a-cursor 
         id="cursor"
         ></a-cursor>
