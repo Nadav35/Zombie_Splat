@@ -22,14 +22,6 @@ class Weapon extends Component {
           static-body
         >
         </a-mixin>
-        <Entity
-          dynamic-body
-          geometry={{ primitive: 'box' }}
-          material={{ color: 'red' }}
-          position={{ x: 1, y: 1, z: -5 }}
-          events={{collide: (e) => {console.log(e)}
-          }}
-        />
         <a-box 
           id="cube"
           color='blue' 
