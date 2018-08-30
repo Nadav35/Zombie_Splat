@@ -7,7 +7,15 @@ class GameState extends Component {
     this.state = {
       fontSize: "5%",
       score: 0,
-      playerHealth: 10
+      playerHealth: 10,
+      gameOver: false
+    }
+  }
+
+  decremHealth () {
+    this.setState({playerHealth: this.state.playerHealth - 1})
+    if (this.state.playerHealth === 0) {
+      this.setState({gameOver: true})
     }
   }
 
