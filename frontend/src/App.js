@@ -16,6 +16,7 @@ class App extends Component {
   constructor(props) {
     super(props);
   }
+  
   componentDidMount() {
     document.querySelector('#weapon').addEventListener('collide', function (evt) {
       console.log('helloAWEFAWJIFEAEFJWAEJ1');
@@ -23,7 +24,6 @@ class App extends Component {
   }
   render() {
     return (
-
       <a-scene physics="debug:true;" id="scene">
         <a-assets>
             <a-mixin
@@ -36,7 +36,6 @@ class App extends Component {
         </a-assets>
         <a-entity environment="preset: arches;"></a-entity>
         <Sky />
-
         <Camera />
         <Bullets/>
         <Ball/>

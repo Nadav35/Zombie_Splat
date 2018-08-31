@@ -10,9 +10,7 @@ const MainApp = () => (
       <Route exact path ="/login" component={loginFormContainer} />
       <Route exact path ="/game" component={App} />
       <Route exact path ="/" component={SignupFormContainer} />
-
     </Switch>
-
   </div>
 );
 

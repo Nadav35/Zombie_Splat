@@ -8,15 +8,11 @@ import Bullets from './bullets';
 class Weapon extends Component {
 
   render () {
-    
     return (
-
       <a-entity
         id="weapon"
         position="0 0 -3"
         >
-      
-   
       </a-entity>
 
     )
