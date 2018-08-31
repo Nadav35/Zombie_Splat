@@ -18,7 +18,8 @@ class Zombie extends Component {
   }
 
   componentDidMount() {
-    document.querySelector("#zombie-hitbox").addEventListener("collide", (e) => {
+    document.querySelector(`#zombie-hitbox${this.props.hitBoxId}`).addEventListener("collide", (e) => {
+      console.log(e.detail.body.el.getAttribute('id'))
       if (e.detail.body.el.getAttribute('id') === "bullets") {
         console.log("HIT", this.state.health);
         this.setState({ health: this.state.health - 1 });
@@ -26,6 +27,7 @@ class Zombie extends Component {
       if (this.state.health <= 0) {
         setTimeout(function () {
           if (e.detail.target.el) {
+            debugger;
             e.detail.target.el.parentNode.removeChild(e.detail.target.el);
           }
           if (e.detail.body.el) {
@@ -48,9 +50,9 @@ class Zombie extends Component {
       <a-entity
         geometry="primitive: box; height: 1.6"
         material="side: double; transparent: true; opacity: 0; "
-        id="zombie-hitbox"
+        id={`zombie-hitbox${this.props.hitBoxId}`}
         dynamic-body="mass: 100; shape: cylinder"
-        
+      
         linearDamping="50"
         position={this.state.position}>
         

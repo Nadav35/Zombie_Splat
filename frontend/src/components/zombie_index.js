@@ -11,8 +11,8 @@ class ZombieIndex extends Component {
     { pX: "-9", pY: "1", pZ: "-4" }, { pX: "5", pY: "1", pZ: "-4" }, { pX: "0", pY: "1", pZ: "-10" }];
 
     return (
-      positions.map(position => {
-        return (<Zombie pX={position.pX} pY={position.pY} pZ={position.pZ}/>)
+      positions.map((position, idx) => {
+        return (<Zombie key={idx} hitBoxId={idx} pX={position.pX} pY={position.pY} pZ={position.pZ}/>)
       })
     )
   }
