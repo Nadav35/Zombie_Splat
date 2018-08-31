@@ -35,7 +35,7 @@ class App extends Component {
             static-body>
           </a-mixin>
         </a-assets>
-        <a-entity environment="preset: arches;"></a-entity>
+        <a-entity environment="preset: arches; playArea:4;"></a-entity>
         <Sky />
         <Camera />
         <Bullets/>
