@@ -31,7 +31,7 @@ app.use(express.static('./frontend/build/static/js'))
 app.use(express.static('./frontend/build/static/css'))
 app.use(express.static('./frontend/build/static/media'))
 
-app.get("/", (req, res) => res.sendFile(path.join(__dirname, 'build', 'index.html')));
+app.get("/", (req, res) => res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html')));
 
 const port = process.env.PORT || 5000;
 
