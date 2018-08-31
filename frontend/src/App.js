@@ -24,7 +24,7 @@ class App extends Component {
   }
   render() {
     return (
-      <a-scene physics="debug:true;" id="scene">
+      <a-scene id="scene">
         <a-assets>
             <a-mixin
             id="bullets"
