@@ -53,7 +53,7 @@ class Bullets extends Component {
             },500);
             
           }
-          }, 500);
+          }, 75);
         }
     })
   }

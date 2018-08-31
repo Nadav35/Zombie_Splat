@@ -33,7 +33,7 @@ export const registerUser = (userData, history) => dispatch => {
       // Decode token to get user data
       const decoded = jwtDecode(token);
       // Set current user
-      dispatch(setCurrentUser(decoded));
+      return dispatch(setCurrentUser(decoded));
     })
     .catch(err => 
       dispatch({
@@ -58,7 +58,7 @@ export const loginUser = userData => dispatch => {
       // Decode token to get user data
       const decoded = jwtDecode(token);
       // Set current user
-      dispatch(setCurrentUser(decoded));
+      return dispatch(setCurrentUser(decoded));
     })
     .catch(err =>
       dispatch({

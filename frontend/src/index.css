@@ -25,16 +25,16 @@ h2 {
   
 }
 
-.zombie {
+img {
   position: relative;
   animation-name: move;
-  animation-duration: 60s;
+  animation-duration: 5s;
   animation-fill-mode: forwards;
 }
 
 @keyframes move {
-  0% {right: -500px;}
-  100% {right: 200px;}
+  0% {right: -40vw;}
+  100% {right: 20vw; }
 }
 
 .session-container {
@@ -58,6 +58,8 @@ input {
   text-align: center;
   
   justify-items: center;
+  justify-content: center;
+  align-content: center;
 
 }
 
@@ -69,12 +71,24 @@ input {
   
 }
 
+.form-submit {
+  /* align-content: center;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  display: flex; */
+}
+
 button {
   background-color: #333;
   color: #fff;
   padding: 0.6rem 1.3rem;
   text-decoration: none;
   border: 0;
+  font-family: cursive;
+  font-size: 16px;
+  /* align-self: center;
+  justify-self: center; */
 }
 
 .form-footer aside{
@@ -91,6 +105,7 @@ a {
   /* align-self: center; */
   font-family: 'Times New Roman', Times, serif;
   font-size: 23px;
+  color: red;
 
   
 }

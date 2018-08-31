@@ -23,7 +23,27 @@ class SessionForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const user = merge({}, this.state);
-    this.props.processForm(user).then(() => this.props.history.push("/game"));
+    this.props.processForm(user).then((data) => {
+      if (data.type === "RECEIVE_CURRENT_USER") {
+        this.props.history.push("/game");
+      }
+    });
+  }
+
+  getErrors() {
+    if (this.props.errors.length > 0) {
+      return (
+        <ul className="session-errors">
+          {this.props.errors.map((error, idx) => (
+            <li key={`error-${idx}`}>
+              {error}
+            </li>
+          ))}
+        </ul>
+      );
+    } else {
+      return "";
+    }
   }
 
   render() {
@@ -47,6 +67,7 @@ class SessionForm extends React.Component {
             <form className="form"
               onSubmit={this.handleSubmit}>
               <h2>{this.props.formType}</h2>
+              {this.getErrors()}
 
               {nameInput}
               
@@ -72,12 +93,12 @@ class SessionForm extends React.Component {
                 {/* <i className="fas fa-unlock"></i> */}
               </div>
               
-              <div className="form-submit">
+              
                 <button className="submit-button">
                   {this.props.formType}
                 </button>
               
-              </div>
+              
 
               <div className="form-footer">
                 

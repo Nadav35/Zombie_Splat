@@ -6,7 +6,7 @@ import SessionForm from './session_form';
 
 const msp = (state) => {
   return {
-    errors: state.errors,
+    errors: Object.values(state.errors),
     formType: 'Sign up',
     navLink: <Link to="/login">log in</Link>
   };
