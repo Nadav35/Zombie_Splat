@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "build": "npm run build --prefix frontend",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run dev",
     "server": "nodemon server.js",
