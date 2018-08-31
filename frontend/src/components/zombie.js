@@ -14,7 +14,6 @@ class Zombie extends Component {
       hit: false
     }
     this.decremHealth = this.decremHealth.bind(this);
-    this.move = this.move.bind(this);
   }
 
   componentDidMount() {
@@ -36,13 +35,6 @@ class Zombie extends Component {
 
   }
 
-  move() {
-    let times = 20;
-    for (let i = 0; i < times; i++) {
-      this.setState({ position: `${this.props.pX} ${this.props.pY} ${parseInt(this.props.pZ) + this.props.inc}` })
-      console.log(this.state.position)
-    }
-  }
 
   decremHealth() {
     this.setState({ health: this.state.health - 1 })
@@ -52,14 +44,15 @@ class Zombie extends Component {
 
     return (
       <a-entity
-        geometry="primitive: box;"
+        geometry="primitive: box; height: 1.8"
         material="side: double; transparent: true; opacity: 0; "
         id="zombie-hitbox"
         dynamic-body="mass: 50"
-        position={this.state.position}
-      >
+        position={this.state.position}>
+        
         <Entity gltf-model={zombie}
           body="type: dynamic; mass: 5;"
+          position="0 -1 0"
           id="zombie" animation-mixer></Entity>
       </a-entity>
     )
