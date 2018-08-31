@@ -49,7 +49,7 @@ class Zombie extends Component {
   }
 
   render() {
-
+    
     return (
       <a-entity
         geometry="primitive: box;"
