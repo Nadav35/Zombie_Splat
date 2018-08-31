@@ -45,14 +45,16 @@ class Zombie extends Component {
     
     return (
       <a-entity
-        geometry="primitive: box; height: 1.8"
+        geometry="primitive: box; height: 1.6"
         material="side: double; transparent: true; opacity: 0; "
         id="zombie-hitbox"
-        dynamic-body="mass: 50"
+        dynamic-body="mass: 100; shape: cylinder"
+        
+        linearDamping="50"
         position={this.state.position}>
         
         <Entity gltf-model={zombie}
-          body="type: dynamic; mass: 5;"
+          body="type: dynamic;"
           position="0 -1 0"
           id="zombie" animation-mixer></Entity>
       </a-entity>
