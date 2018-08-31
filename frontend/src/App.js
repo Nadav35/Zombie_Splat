@@ -11,6 +11,7 @@ import Bullets from './components/bullets';
 import Sky from './components/sky';
 import Light from './components/moonlight';
 import Zombie from './components/zombie';
+import ZombieIndex from './components/zombie_index';
 
 class App extends Component {
   constructor(props) {
@@ -40,6 +41,7 @@ class App extends Component {
         <Bullets/>
         <Ball/>
         <Zombie pX={"1"} pY={"1"} pZ={"-3"} inc={.1}/>
+        <ZombieIndex />
         <Plane />
       </a-scene>
     );

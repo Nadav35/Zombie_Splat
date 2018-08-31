@@ -20,6 +20,7 @@ class Zombie extends Component {
   componentDidMount() {
     document.querySelector("#zombie-hitbox").addEventListener("collide", (e) => {
       if (e.detail.body.el.getAttribute('id') === "bullets") {
+        console.log("HIT", this.state.health);
         this.setState({ health: this.state.health - 1 });
       }
       if (this.state.health <= 0) {
