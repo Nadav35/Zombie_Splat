@@ -30,6 +30,18 @@ img {
   animation-name: move;
   animation-duration: 5s;
   animation-fill-mode: forwards;
+  height: 50%;
+
+}
+
+
+
+.zombie{
+  background-image: url("./assets/zombie-background.jpg");
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 @keyframes move {
@@ -41,6 +53,7 @@ img {
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-gap: 20px;
+  /* background: black; */
 }
 
 .session-form {
@@ -79,6 +92,12 @@ input {
   display: flex; */
 }
 
+.buttons {
+  display: grid;
+  grid-gap: 20px;
+  /* width: 100%; */
+}
+
 button {
   background-color: #333;
   color: #fff;
@@ -89,23 +108,35 @@ button {
   font-size: 16px;
   /* align-self: center;
   justify-self: center; */
+  
+  
+}
+
+input:hover {
+  box-shadow: 0 1px 9px rgba(104, 104, 104, 0.8);
+}
+
+button:hover {
+  box-shadow: 0 1px 9px rgba(104, 104, 104, 0.8);
+  color: red;
 }
 
 .form-footer aside{
-  font-family: 'Times New Roman', Times, serif;
+  font-family: cursive;
   font-size: 23px;
 }
-
-
-
 
 
 a {
   text-decoration: none;
   /* align-self: center; */
-  font-family: 'Times New Roman', Times, serif;
+  font-family: cursive;
   font-size: 23px;
   color: red;
 
   
+}
+
+a:hover {
+  color: blue;
 }

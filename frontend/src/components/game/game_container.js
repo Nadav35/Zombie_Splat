@@ -8,8 +8,5 @@ const msp = (state) => {
   };
 };
 
-const mdp = dispatch => {
 
-};
-
-export default connect(msp, mdp)(App);
+export default connect(msp)(App);

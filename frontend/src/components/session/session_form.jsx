@@ -13,8 +13,11 @@ class SessionForm extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.loginDemoUser = this.loginDemoUser.bind(this);
 
   }
+
+  
 
   update(property) {
     return e => this.setState({ [property]: e.target.value });
@@ -28,6 +31,22 @@ class SessionForm extends React.Component {
         this.props.history.push("/game");
       }
     });
+  }
+
+  loginDemoUser(e) {
+    
+    e.preventDefault();
+    const demoUser = {
+      email: "bob1@yahoo.com",
+      password: "123456"
+    };
+    if (this.props.formType === "Sign up") {
+      this.props.loginDemoUser(demoUser)
+        .then(this.props.history.push("/game"));
+    } else {
+      this.props.processForm(demoUser)
+        .then(this.props.history.push("/game"));
+    }
   }
 
   getErrors() {
@@ -64,8 +83,7 @@ class SessionForm extends React.Component {
         
         <div className="session-container">
           <div className="session-form">
-            <form className="form"
-              onSubmit={this.handleSubmit}>
+            <form className="form">
               <h2>{this.props.formType}</h2>
               {this.getErrors()}
 
@@ -93,10 +111,17 @@ class SessionForm extends React.Component {
                 {/* <i className="fas fa-unlock"></i> */}
               </div>
               
-              
-                <button className="submit-button">
+              <div className="buttons">
+                <button onClick={this.handleSubmit}
+                className="submit-button">
                   {this.props.formType}
                 </button>
+
+                <button onClick={this.loginDemoUser}
+                className="demo-button">
+                  Demo User
+                </button>
+              </div>
               
               
 
@@ -110,7 +135,10 @@ class SessionForm extends React.Component {
             </form>
           </div>
           <div className="zombie">
-            <img src="./zombie.gif" />
+            {/* <img src="./monster.gif" /> */}
+            <div className="background-div">
+
+            </div>
           </div>
         </div>
         

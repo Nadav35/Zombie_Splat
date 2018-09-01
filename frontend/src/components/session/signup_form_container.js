@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { registerUser } from '../../util/session_api_util';
+import { registerUser, loginUser } from '../../util/session_api_util';
 import SessionForm from './session_form';
+
 
 const msp = (state) => {
   return {
@@ -14,7 +15,8 @@ const msp = (state) => {
 
 const mdp = dispatch => {
   return {
-    processForm: (user) => dispatch(registerUser(user))
+    processForm: (user) => dispatch(registerUser(user)),
+    loginDemoUser: (user) => dispatch(loginUser(user))
   };
 };
 

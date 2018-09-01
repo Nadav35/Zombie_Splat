@@ -14,7 +14,6 @@ import Zombie from './components/zombie';
 
 class App extends Component {
   constructor(props) {
-    debugger
     super(props);
   }
   
