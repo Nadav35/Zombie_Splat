@@ -10,11 +10,9 @@ import { removeZombie, resetZombies, setZombieCount } from '../actions/zombie_ac
 class ZombieIndex extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       zomsEmpty: true
     }
-
     this.positions = [{ pX: "8", pY: "1", pZ: "-6" }, { pX: "4", pY: "1", pZ: "-9" }, { pX: "3", pY: "1", pZ: "-2" },
                      { pX: "-9", pY: "1", pZ: "-4" }, { pX: "-5", pY: "1", pZ: "-6" }, { pX: "-7", pY: "1", pZ: "-6" },
                      { pX: "0", pY: "1", pZ: "-10" }, { pX: "7", pY: "1", pZ: "-5" }, { pX: "5", pY: "1", pZ: "-8" }];
@@ -23,7 +21,12 @@ class ZombieIndex extends Component {
 
   componentDidMount() {
     this.props.setZombieCount(this.positions.length);
-    console.log('numZoms', this.props.zombies)
+  }
+
+  componentWillUpdate () {
+    if (this.props.zombies === 0) {
+      this.resetZoms();
+    }
   }
 
   resetZoms () {

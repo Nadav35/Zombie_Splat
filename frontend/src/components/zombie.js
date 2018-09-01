@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import 'aframe';
 import 'aframe-physics-system';
 import 'aframe-extras';
+import { connect } from 'react-redux';
 import zombie from '../models/zombie/zombie.gltf'
 import { Entity } from 'aframe-react';
 import { removeZombie } from '../actions/zombie_actions';
@@ -15,7 +16,7 @@ class Zombie extends Component {
       position: `${props.pX} ${props.pY} ${props.pZ}`,
       hit: false
     }
-    this.decremHealth = this.decremHealth.bind(this);
+    this.removeZombie = this.removeZombie.bind(this);
   }
 
   componentDidMount() {
@@ -24,7 +25,8 @@ class Zombie extends Component {
         this.setState({ health: this.state.health - 1 });
       }
       if (this.state.health <= 0) {
-        setTimeout(function () {
+        this.removeZombie();
+        setTimeout(() => {
           if (e.detail.target.el) {
             e.detail.target.el.parentNode.removeChild(e.detail.target.el);
           }
@@ -38,8 +40,8 @@ class Zombie extends Component {
   }
 
 
-  decremHealth() {
-    this.setState({ health: this.state.health - 1 })
+  removeZombie() {
+    this.props.removeZombie();
   }
 
   render() {
@@ -63,4 +65,13 @@ class Zombie extends Component {
   }
 }
 
-export default Zombie;
+
+const mapStateToProps = state => ({
+  zombies: state.entities.zombies
+})
+
+const mapDispatchToProps = dispatch => ({
+  removeZombie: () => dispatch(removeZombie()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Zombie);
