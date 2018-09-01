@@ -11,7 +11,6 @@ class Camera extends Component {
         <a-cursor 
         id="cursor"
         ></a-cursor>
-        <a-entity id="raycaster" raycaster="far: 1" position="1 1 -2" showLine="true"></a-entity>
         <GameState />
         <Weapon />
       </a-entity>
