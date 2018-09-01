@@ -13,8 +13,11 @@ class SessionForm extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.loginDemoUser = this.loginDemoUser.bind(this);
 
   }
+
+  
 
   update(property) {
     return e => this.setState({ [property]: e.target.value });
@@ -23,7 +26,43 @@ class SessionForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const user = merge({}, this.state);
-    this.props.processForm(user).then(() => this.props.history.push("/game"));
+    this.props.processForm(user).then((data) => {
+      if (data.type === "RECEIVE_CURRENT_USER") {
+        this.props.history.push("/game");
+      }
+    });
+  }
+
+  loginDemoUser(e) {
+    
+    e.preventDefault();
+    const demoUser = {
+      email: "bob1@yahoo.com",
+      password: "123456"
+    };
+    if (this.props.formType === "Sign up") {
+      this.props.loginDemoUser(demoUser)
+        .then(this.props.history.push("/game"));
+    } else {
+      this.props.processForm(demoUser)
+        .then(this.props.history.push("/game"));
+    }
+  }
+
+  getErrors() {
+    if (this.props.errors.length > 0) {
+      return (
+        <ul className="session-errors">
+          {this.props.errors.map((error, idx) => (
+            <li key={`error-${idx}`}>
+              {error}
+            </li>
+          ))}
+        </ul>
+      );
+    } else {
+      return "";
+    }
   }
 
   render() {
@@ -44,9 +83,9 @@ class SessionForm extends React.Component {
         
         <div className="session-container">
           <div className="session-form">
-            <form className="form"
-              onSubmit={this.handleSubmit}>
+            <form className="form">
               <h2>{this.props.formType}</h2>
+              {this.getErrors()}
 
               {nameInput}
               
@@ -72,12 +111,19 @@ class SessionForm extends React.Component {
                 {/* <i className="fas fa-unlock"></i> */}
               </div>
               
-              <div className="form-submit">
-                <button className="submit-button">
+              <div className="buttons">
+                <button onClick={this.handleSubmit}
+                className="submit-button">
                   {this.props.formType}
                 </button>
-              
+
+                <button onClick={this.loginDemoUser}
+                className="demo-button">
+                  Demo User
+                </button>
               </div>
+              
+              
 
               <div className="form-footer">
                 
@@ -89,7 +135,10 @@ class SessionForm extends React.Component {
             </form>
           </div>
           <div className="zombie">
-            <img src="./zombie.gif" />
+            {/* <img src="./monster.gif" /> */}
+            <div className="background-div">
+
+            </div>
           </div>
         </div>
         
