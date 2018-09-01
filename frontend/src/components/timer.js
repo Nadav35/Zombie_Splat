@@ -41,6 +41,9 @@ class Timer extends Component {
 
   countDown () {
     let seconds = this.state.seconds - 1;
+    if (seconds < 10) {
+      seconds = `0${this.state.seconds}`
+    }
     
     this.setState({
       time: this.secondsToTime(seconds),
