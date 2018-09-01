@@ -3,13 +3,17 @@ import React, { Component } from 'react';
 import 'aframe';
 import 'aframe-physics-system';
 import 'aframe-extras';
-import zombie from '../models/zombie/zombie.gltf'
+import 'aframe-animation-component';
+import zombie from '../models/zombie/zombie.gltf';
+import monster from '../models/monster/monster.gltf';
+import GameState from './game_state';
 import { Entity } from 'aframe-react';
+
 class Zombie extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      health: 10,
+      health: 2,
       position: `${props.pX} ${props.pY} ${props.pZ}`,
       hit: false
     }
@@ -17,8 +21,10 @@ class Zombie extends Component {
   }
 
   componentDidMount() {
-    document.querySelector("#zombie-hitbox").addEventListener("collide", (e) => {
+    
+    document.querySelector(`#zombie-hitbox${this.props.hitBoxId}`).addEventListener("collide", (e) => {
       if (e.detail.body.el.getAttribute('id') === "bullets") {
+        
         this.setState({ health: this.state.health - 1 });
       }
       if (this.state.health <= 0) {
@@ -41,22 +47,27 @@ class Zombie extends Component {
   }
 
   render() {
-
+    let monsterPosition = `${this.props.pX} ${this.props.pY} ${this.props.pZ}`;
+    let showMonster = this.props.hitBoxId > 3 ? true: false;
+   
     return (
-      <a-entity
-        geometry="primitive: box; height: 1.6"
-        material="side: double; transparent: true; opacity: 0; "
-        id="zombie-hitbox"
-        dynamic-body="mass: 100; shape: cylinder"
-        
+      <Entity
+        geometry={`primitive: box; height: 1.6; depth: ${showMonster ? 2: ""}` }
+        material="side: double; transparent: true; opacity: 0.1;"
+        id={`zombie-hitbox${this.props.hitBoxId}`}
+        className="hitbox"
+        animation = {showMonster ? "property: position; dur: 1000; loop: 0; to: 0 0.5 -2" : "" }
         linearDamping="50"
-        position={this.state.position}>
-        
-        <Entity gltf-model={zombie}
-          body="type: dynamic;"
-          position="0 -1 0"
-          id="zombie" animation-mixer></Entity>
-      </a-entity>
+        static-body
+        position={showMonster ? monsterPosition : this.state.position}>
+        <Entity gltf-model={showMonster ? monster : zombie}
+          rotation={showMonster ? "180 90 180" : ""}
+          scale={showMonster ? "0.05 0.05 0.05" : ""}
+          static-body
+          position={showMonster ? '0 -1 -1.5' : '0 -1 0' }
+          id="zombie" animation-mixer>
+          </Entity>
+      </Entity>
     )
   }
 }

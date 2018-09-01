@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import 'aframe';
+import Timer from './timer';
 
 class GameState extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class GameState extends Component {
       gameOver: false
     }
   }
-
+  
   decremHealth () {
     this.setState({playerHealth: this.state.playerHealth - 1})
     if (this.state.playerHealth === 0) {
@@ -20,8 +21,10 @@ class GameState extends Component {
   }
 
   render() {
+
     return (
       <a-entity>
+        <Timer seconds={60}/>
         <a-text 
           value={`Score: ${this.state.score}`}
           position="-1 -.7 -1"

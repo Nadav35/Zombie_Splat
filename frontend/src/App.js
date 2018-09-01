@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import 'aframe';
 import './App.css';
 import 'aframe-environment-component';
-import {Entity, Scene} from 'aframe-react';
 
 import Camera from './components/camera';
 import Ball from './components/ball';
 import Plane from './components/plane';
 import Bullets from './components/bullets';
 import Sky from './components/sky';
-import Light from './components/moonlight';
 import Zombie from './components/zombie';
+import ZombieIndex from './components/zombie_index';
+
 
 class App extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class App extends Component {
   }
   render() {
     return (
-      <a-scene physics="debug:true;" id="scene">
+      <a-scene phsyics="debug: true;" id="scene">
         <a-assets>
             <a-mixin
             id="bullets"
@@ -34,12 +34,14 @@ class App extends Component {
             static-body>
           </a-mixin>
         </a-assets>
-        <a-entity environment="preset: arches;"></a-entity>
+        <a-entity environment="preset: arches; playArea:4;"></a-entity>
         <Sky />
         <Camera />
         <Bullets/>
         <Ball/>
         <Zombie pX={"1"} pY={"1"} pZ={"-3"} inc={.1}/>
+        <ZombieIndex  />
+
         <Plane />
       </a-scene>
     );

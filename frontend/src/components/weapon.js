@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import AFRAME from 'aframe';
 import 'aframe-physics-system';
-import {Entity} from 'aframe-react';
 import 'aframe-extras';
-import Bullets from './bullets';
+
 
 class Weapon extends Component {
 
