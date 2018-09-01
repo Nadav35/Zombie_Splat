@@ -5,7 +5,6 @@ import jwtDecode from 'jwt-decode';
 import * as APIUtil from './util/session_api_util';
 // Components
 import configureStore from './store/store';
-import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import Root from './components/root';
 
