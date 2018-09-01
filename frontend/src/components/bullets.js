@@ -32,6 +32,7 @@ class Bullets extends Component {
             let new_x = (20 * Math.sin(radian));
 
             animation.setAttribute('attribute', 'position');
+            
             animation.setAttribute('from', `${position.x} ${position.y} ${position.z}`);
             animation.setAttribute('to', `${new_x} ${rotation.x} ${-new_z}`)
             if (rotation.x < -1) {

@@ -12,7 +12,7 @@ class GameState extends Component {
       gameOver: false
     }
   }
-
+  
   decremHealth () {
     this.setState({playerHealth: this.state.playerHealth - 1})
     if (this.state.playerHealth === 0) {
@@ -21,6 +21,7 @@ class GameState extends Component {
   }
 
   render() {
+
     return (
       <a-entity>
         <Timer position={"-.15 -.7 -1"} seconds={15}/>

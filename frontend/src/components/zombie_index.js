@@ -7,6 +7,7 @@ import { Entity } from 'aframe-react';
 import Zombie from './zombie';
 import { removeZombie, resetZombies, setZombieCount } from '../actions/zombie_actions';
 
+
 class ZombieIndex extends Component {
   constructor(props) {
     super(props);

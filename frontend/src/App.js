@@ -2,16 +2,15 @@ import React, { Component } from 'react';
 import 'aframe';
 import './App.css';
 import 'aframe-environment-component';
-import {Entity, Scene} from 'aframe-react';
 
 import Camera from './components/camera';
 import Ball from './components/ball';
 import Plane from './components/plane';
 import Bullets from './components/bullets';
 import Sky from './components/sky';
-import Light from './components/moonlight';
 import Zombie from './components/zombie';
 import ZombieIndex from './components/zombie_index';
+
 
 class App extends Component {
   constructor(props) {
