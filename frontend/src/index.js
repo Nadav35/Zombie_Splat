@@ -7,6 +7,7 @@ import * as APIUtil from './util/session_api_util';
 import configureStore from './store/store';
 import registerServiceWorker from './registerServiceWorker';
 import Root from './components/root';
+import {removeZombie, resetZombies, setZombieCount} from './actions/zombie_actions';
 
 document.addEventListener("DOMContentLoaded", () => {
   let store = configureStore();
@@ -27,6 +28,13 @@ document.addEventListener("DOMContentLoaded", () => {
   //     window.location.href = '/login';
   //   }
   // }
+
+  window.getState = store.getState;
+  window.dispatch = store.dispatch;
+  window.removeZombie = removeZombie;
+  window.resetZombies = resetZombies;
+  window.setZombieCount = setZombieCount;
+
 
 
   ReactDOM.render(<Root store={store}/>, document.getElementById('root'));
