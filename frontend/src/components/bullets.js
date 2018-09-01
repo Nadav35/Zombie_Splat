@@ -53,7 +53,7 @@ class Bullets extends Component {
                 if (newBullets.parentEl) {
                   newBullets.parentEl.removeChild(newBullets)
                 }
-              }, 500);
+              }, 700);
 
             }
           }, 500);

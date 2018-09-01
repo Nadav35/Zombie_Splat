@@ -10,7 +10,7 @@ class Zombie extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      health: 10,
+      health: 2,
       position: `${props.pX} ${props.pY} ${props.pZ}`,
       hit: false
     }
@@ -19,15 +19,12 @@ class Zombie extends Component {
 
   componentDidMount() {
     document.querySelector(`#zombie-hitbox${this.props.hitBoxId}`).addEventListener("collide", (e) => {
-      console.log(e.detail.body.el.getAttribute('id'))
       if (e.detail.body.el.getAttribute('id') === "bullets") {
-        console.log("HIT", this.state.health);
         this.setState({ health: this.state.health - 1 });
       }
       if (this.state.health <= 0) {
         setTimeout(function () {
           if (e.detail.target.el) {
-            debugger;
             e.detail.target.el.parentNode.removeChild(e.detail.target.el);
           }
           if (e.detail.body.el) {
