@@ -41,9 +41,6 @@ class Timer extends Component {
 
   countDown () {
     let seconds = this.state.seconds - 1;
-    if (seconds < 10) {
-      seconds = `0${this.state.seconds}`
-    }
     
     this.setState({
       time: this.secondsToTime(seconds),
@@ -56,15 +53,28 @@ class Timer extends Component {
   }
 
   render() {
-    return (
-      <a-text
-        value={ `0${this.state.time.m}:${this.state.time.s}` }
-        position="0 -.7 -1"
-        width="2%"
-        font="mozillavr"
-      >
-      </a-text>
-    );
+    if (this.state.time.s >= 10) {
+      return (
+        <a-text
+          value={`0${this.state.time.m}:${this.state.time.s}`}
+          position={this.props.position}
+          width="2%"
+          font="mozillavr"
+        >
+        </a-text>
+      );
+    } else {
+      return (
+        <a-text
+          value={`0${this.state.time.m}:0${this.state.time.s}`}
+          position={this.props.position}
+          width="2%"
+          font="mozillavr"
+        >
+        </a-text>
+      );
+    }
+
   }
 }
 

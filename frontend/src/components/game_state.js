@@ -23,7 +23,7 @@ class GameState extends Component {
   render() {
     return (
       <a-entity>
-        <Timer seconds={60}/>
+        <Timer position={"-.15 -.7 -1"} seconds={15}/>
         <a-text 
           value={`Score: ${this.state.score}`}
           position="-1 -.7 -1"

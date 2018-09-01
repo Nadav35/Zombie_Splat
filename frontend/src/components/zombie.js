@@ -5,6 +5,7 @@ import 'aframe-physics-system';
 import 'aframe-extras';
 import zombie from '../models/zombie/zombie.gltf'
 import { Entity } from 'aframe-react';
+import { removeZombie } from '../actions/zombie_actions';
 
 class Zombie extends Component {
   constructor(props) {

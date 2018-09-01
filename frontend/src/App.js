@@ -40,7 +40,6 @@ class App extends Component {
         <Camera />
         <Bullets/>
         <Ball/>
-        <Zombie pX={"1"} pY={"1"} pZ={"-3"} inc={.1}/>
         <ZombieIndex />
         <Plane />
       </a-scene>
