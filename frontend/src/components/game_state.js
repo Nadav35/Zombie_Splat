@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import 'aframe';
 import Timer from './timer';
+import { connect } from 'react-redux';
 
 class GameState extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class GameState extends Component {
   }
 
   render() {
-
+    const health = this.props.health < 0 ? 0 :this.props.health;
     return (
       <a-entity>
         <Timer position={"-.15 -.7 -1"} seconds={15}/>
@@ -33,7 +34,7 @@ class GameState extends Component {
         >
         </a-text>
         <a-text 
-          value={`Health: ${this.state.playerHealth}`}
+          value={`Health: ${health}`}
           position=".5 -.7 -1"
           width="2%"
           font="mozillavr"
@@ -43,5 +44,11 @@ class GameState extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  health: state.gameState.player.health
+})
 
-export default GameState;
+const mapDispatchToProps = dispatch => ({
+});
+
+export default connect(mapStateToProps, null)(GameState);
