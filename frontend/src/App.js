@@ -39,7 +39,7 @@ class App extends Component {
         <Sky />
         <Camera />
         <Bullets/>
-        <Ball/>
+        {/* <Ball/> */}
         <ZombieIndex />
         <Plane />
       </a-scene>
