@@ -11,13 +11,13 @@ class SessionForm extends React.Component {
       name: '',
       password: ''
     };
-
     this.handleSubmit = this.handleSubmit.bind(this);
     this.loginDemoUser = this.loginDemoUser.bind(this);
-
   }
 
-  
+  componentDidMount () {
+    this.props.setHealth(10);
+  }
 
   update(property) {
     return e => this.setState({ [property]: e.target.value });
