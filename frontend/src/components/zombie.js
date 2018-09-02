@@ -15,6 +15,7 @@ import { setHealth } from '../actions/player_actions';
 class Zombie extends Component {
   constructor(props) {
     super(props);
+    console.log("HEALTHTHHWERWE",this.props.health);
     this.state = {
       health: this.props.health,
       zombieHealth: 2,
@@ -45,11 +46,24 @@ class Zombie extends Component {
 
     document.querySelector(`#zombie-hitbox${this.props.hitBoxId}`).addEventListener("animationcomplete", (e) => {
       this.setState({position: e.target.body.position});
-      // console.log(this.props);;\
+      let intervalId = 0;
       if(this.state.health > 0) {
         e.target.body.mass = 9999;
-        this.props.setHealth(this.props.health - 1);
-        this.setState({health: this.state.health - 1})
+        
+        setTimeout(() => {
+          this.setState({health: this.props.health - 1});
+          this.props.setHealth(this.state.health);
+        }, 0);
+        intervalId = setInterval(() => {
+          if (this.state.health > 0) {
+            
+            this.setState({health: this.props.health - 1});
+            this.props.setHealth(this.state.health);
+          }
+        }, 5000);
+      }
+      if(this.state.health <= 0) {
+        clearInterval(intervalId);
       }
     })
   }
@@ -59,13 +73,12 @@ class Zombie extends Component {
   }
 
   render() {
-    // let monsterPosition = `${this.props.pX} ${this.props.pY} ${this.props.pZ}`;
     let showMonster = this.props.hitBoxId > 3 ? true: false;
-    let dur = 7000;
-    if(showMonster) {
-
+    let dur = 5000;
+    if(Math.abs(this.props.pZ) > 10) {
+      let offset = Math.abs(this.props.pZ) - 10;
+      dur += (offset * 1000);
     }
-    // dynamic-body="mass: 999999; linearDamping: .9999;"
     return (
       <Entity
         geometry={`primitive: box; height: 1.6; depth: ${showMonster ? 2: ""}` }
@@ -74,15 +87,11 @@ class Zombie extends Component {
         className="hitbox"
         linearDamping="50"
         body="type: dynamic; mass: 0;"
-        animation = {showMonster ? "property: position;  dur: 1000; loop: 0; to: 0 0.5 -2" : "" }
-        // dynamic-body="mass: 0; linearDamping: .9999; shape: hull"
+        animation = {showMonster ? `property: position;  dur: ${dur}; loop: 0; to: 0 0.5 -2` : "" }
         position={this.state.position}>
-          {/* <a-animation attribute="position" from="0 0 -8" dur="4000" to="0 0.5 -1"></a-animation> */}
         <Entity gltf-model={showMonster ? monster : zombie}
           rotation={showMonster ? "180 90 180" : ""}
           scale={showMonster ? "0.05 0.05 0.05" : ""}
-          // static-body
-          // body="type: dynamic; mass: 5;"
           position={showMonster ? '0 -1 -1.5' : '0 -1 0' }
           id="zombie" animation-mixer>
           </Entity>
