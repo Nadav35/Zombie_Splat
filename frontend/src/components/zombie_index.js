@@ -15,8 +15,8 @@ class ZombieIndex extends Component {
       zomsEmpty: true
     }
     this.positions = [{ pX: "8", pY: "1", pZ: "-6" }, { pX: "4", pY: "1", pZ: "-9" }, { pX: "3", pY: "1", pZ: "-2" },
-                     { pX: "-9", pY: "1", pZ: "-4" }, { pX: "-5", pY: "1", pZ: "-6" }, { pX: "-7", pY: "1", pZ: "-6" },
-                     { pX: "0", pY: "1", pZ: "-10" }, { pX: "7", pY: "1", pZ: "-5" }, { pX: "5", pY: "1", pZ: "-8" }];
+                     { pX: "-9", pY: "1", pZ: "-4" }, { pX: "-5", pY: "1", pZ: "-12" }, { pX: "-10", pY: "1", pZ: "-16" },
+                     { pX: "0", pY: "1", pZ: "-10" }, { pX: "7", pY: "1", pZ: "-15" }, { pX: "10", pY: "1", pZ: "-14" }];
     this.resetZoms = this.resetZoms.bind(this);
   }
 

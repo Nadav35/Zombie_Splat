@@ -22,10 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Check for expired token
     const currentTime = Date.now() / 1000;
-<<<<<<< HEAD
     
-=======
->>>>>>> b96bc3703ba4013b9d40dd40eddc75e134e6984a
     if (decoded.exp < currentTime) {
       // Logout user
       store.dispatch(APIUtil.logoutUser());
