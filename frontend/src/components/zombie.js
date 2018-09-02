@@ -42,6 +42,7 @@ class Zombie extends Component {
         }, 0);
       }
     })
+
     document.querySelector(`#zombie-hitbox${this.props.hitBoxId}`).addEventListener("animationcomplete", (e) => {
       // console.log(this.props);
       if(this.state.health > 0) {
@@ -51,9 +52,7 @@ class Zombie extends Component {
    
       }
     })
-
   }
-
 
   removeZombie() {
     this.props.removeZombie();
@@ -70,8 +69,9 @@ class Zombie extends Component {
         material="side: double; transparent: true; opacity: 0.1;"
         id={`zombie-hitbox${this.props.hitBoxId}`}
         className="hitbox"
-        animation = {showMonster ? "property: position; dur: 1000; loop: 0; to: 0 0.5 -2" : "" }
-        
+        // animation = {showMonster ? "property: position; dur: 1000; loop: 0; to: 0 0.5 -2" : "" }
+        linearDamping="50"
+        dynamic-body="mass: 999999; linearDamping: .9999;"
         position={showMonster ? monsterPosition : this.state.position}>
         <Entity gltf-model={showMonster ? monster : zombie}
           rotation={showMonster ? "180 90 180" : ""}
@@ -84,7 +84,6 @@ class Zombie extends Component {
     )
   }
 }
-
 
 const mapStateToProps = state => ({
   zombies: state.gameState.zombie,

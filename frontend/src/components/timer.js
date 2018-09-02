@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import 'aframe';
+import { connect } from 'react-redux';
+import { setGameOver, resetGame } from '../actions/game_state_actions';
+import { nextLevel, resetLevel } from '../actions/level_actions';
 
 class Timer extends Component {
   constructor(props) {
@@ -49,6 +52,7 @@ class Timer extends Component {
 
     if (seconds === 0) {
       clearInterval(this.timer);
+      this.props.setGameOver();
     }
   }
 
@@ -78,4 +82,14 @@ class Timer extends Component {
   }
 }
 
-export default Timer;
+const mapStateToProps = state => ({
+  zombies: state.gameState.zombies
+})
+
+const mapDispatchToProps = dispatch => ({
+  setGameOver: () => dispatch(setGameOver()),
+  resetGame: () => dispatch(resetGame()),
+
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Timer);
