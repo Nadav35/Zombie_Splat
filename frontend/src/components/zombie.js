@@ -10,12 +10,12 @@ import GameState from './game_state';
 import { connect } from 'react-redux';
 import { Entity } from 'aframe-react';
 import { removeZombie } from '../actions/zombie_actions';
-
+import { setHealth } from '../actions/player_actions';
 class Zombie extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      health: 2,
+      health: this.props.health,
       position: `${props.pX} ${props.pY} ${props.pZ}`,
       hit: false
     }
@@ -23,10 +23,11 @@ class Zombie extends Component {
   }
 
   componentDidMount() {
-    
+
     document.querySelector(`#zombie-hitbox${this.props.hitBoxId}`).addEventListener("collide", (e) => {
+         
       if (e.detail.body.el.getAttribute('id') === "bullets") {
-        
+          
         this.setState({ health: this.state.health - 1 });
       }
       if (this.state.health <= 0) {
@@ -41,6 +42,15 @@ class Zombie extends Component {
         }, 0);
       }
     })
+    document.querySelector(`#zombie-hitbox${this.props.hitBoxId}`).addEventListener("animationcomplete", (e) => {
+      // console.log(this.props);
+      if(this.state.health > 0) {
+       
+        this.props.setHealth(this.props.health - 1);
+        this.setState({health: this.state.health - 1})
+   
+      }
+    })
 
   }
 
@@ -53,6 +63,7 @@ class Zombie extends Component {
     let monsterPosition = `${this.props.pX} ${this.props.pY} ${this.props.pZ}`;
     let showMonster = this.props.hitBoxId > 3 ? true: false;
    
+    // dynamic-body="mass: 999999; linearDamping: .9999;"
     return (
       <Entity
         geometry={`primitive: box; height: 1.6; depth: ${showMonster ? 2: ""}` }
@@ -60,8 +71,7 @@ class Zombie extends Component {
         id={`zombie-hitbox${this.props.hitBoxId}`}
         className="hitbox"
         animation = {showMonster ? "property: position; dur: 1000; loop: 0; to: 0 0.5 -2" : "" }
-        linearDamping="50"
-        static-body
+        
         position={showMonster ? monsterPosition : this.state.position}>
         <Entity gltf-model={showMonster ? monster : zombie}
           rotation={showMonster ? "180 90 180" : ""}
@@ -77,11 +87,13 @@ class Zombie extends Component {
 
 
 const mapStateToProps = state => ({
-  zombies: state.gameState.zombies
+  zombies: state.gameState.zombie,
+  health: state.gameState.player.health
 })
 
 const mapDispatchToProps = dispatch => ({
   removeZombie: () => dispatch(removeZombie()),
+  setHealth: (health) => dispatch(setHealth(health))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Zombie);
