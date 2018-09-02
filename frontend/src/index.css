@@ -5,10 +5,42 @@ body {
   
 }
 
+.welcome-page {
+  opacity: 0;
+  animation-name: popup;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+.side-title {
+  position: relative;
+  right: 50px;
+  top: 0;
+}
+
+.title-container {
+  position: relative;
+}
+
+h3 {
+  position: absolute;
+  top: 0;
+  right: 80px;
+  /* font-size: 30px; */
+  animation-name: spin;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+}
+
+@keyframes popup {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
 h1 {
   font-size: 40px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  color: red; 
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: rosybrown; 
+  font-weight: 1200;
 }
 
 h2 {
@@ -57,7 +89,7 @@ img {
 }
 
 .session-form {
-  border-right: 1px solid lightblue;
+  /* border-right: 1px solid lightblue; */
 }
 
 input {

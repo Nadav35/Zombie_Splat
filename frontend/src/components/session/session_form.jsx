@@ -36,17 +36,10 @@ class SessionForm extends React.Component {
   loginDemoUser(e) {
     
     e.preventDefault();
-    const demoUser = {
-      email: "bob1@yahoo.com",
-      password: "123456"
-    };
-    if (this.props.formType === "Sign up") {
-      this.props.loginDemoUser(demoUser)
-        .then(this.props.history.push("/game"));
-    } else {
-      this.props.processForm(demoUser)
-        .then(this.props.history.push("/game"));
-    }
+    this.props.loginDemoUser().then((data) => {
+      this.props.history.push("/game");
+    })
+   
   }
 
   getErrors() {
@@ -79,7 +72,11 @@ class SessionForm extends React.Component {
       </div>;
     return (
       <div className="welcome-page">
-        <h1>Welcome to Zombiesplat</h1>
+        <div className="title-container">
+          <h1>Welcome to Zombiesplat</h1>
+          <h3>IN 3D!!!</h3>
+        </div>
+        
         
         <div className="session-container">
           <div className="session-form">
