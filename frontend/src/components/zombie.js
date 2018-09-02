@@ -20,20 +20,23 @@ class Zombie extends Component {
       health: this.props.health,
       zombieHealth: 2,
       position: `${props.pX} ${props.pY} ${props.pZ}`,
-      hit: false
+      hit: false,
+      intervalId: 0
     }
     this.removeZombie = this.removeZombie.bind(this);
   }
 
   componentDidMount() {
+    clearInterval(this.state.intervalId);
     document.querySelector(`#zombie-hitbox${this.props.hitBoxId}`).addEventListener("collide", (e) => {
       if (e.detail.body.el.getAttribute('id') === "bullets") {
         this.setState({ zombieHealth: this.state.zombieHealth - 1 });
       }
       if (this.state.zombieHealth <= 0) {
-        this.removeZombie();
         setTimeout(() => {
           if (e.detail.target.el) {
+            this.removeZombie();
+            clearInterval(this.state.intervalId)
             e.detail.target.el.parentNode.removeChild(e.detail.target.el);
           }
           if (e.detail.body.el) {
@@ -50,21 +53,26 @@ class Zombie extends Component {
         e.target.body.mass = 9999;
         
         setTimeout(() => {
-          this.setState({health: this.props.health - 1});
-          this.props.setHealth(this.state.health);
+          // this.setState({health: this.props.health - 1});
+          this.props.setHealth(this.props.health - 1);
         }, 0);
         intervalId = setInterval(() => {
           if (this.state.health > 0) {
             
-            this.setState({health: this.props.health - 1});
-            this.props.setHealth(this.state.health);
+            // this.setState({health: this.props.health - 1});
+            this.props.setHealth(this.props.health - 1);
           }
         }, 5000);
       }
+      this.setState({ intervalId })
       if(this.state.health <= 0) {
         clearInterval(intervalId);
       }
     })
+  }
+
+  componentWillUnmount () {
+    clearInterval(this.state.intervalId);
   }
 
   removeZombie() {

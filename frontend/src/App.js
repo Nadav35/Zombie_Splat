@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'aframe';
 import './App.css';
 import 'aframe-environment-component';
+import { connect } from 'react-redux';
 
 import Camera from './components/camera';
 import Ball from './components/ball';
@@ -10,6 +11,7 @@ import Bullets from './components/bullets';
 import Sky from './components/sky';
 import Zombie from './components/zombie';
 import ZombieIndex from './components/zombie_index';
+import { setHealth } from './actions/player_actions';
 
 
 class App extends Component {
@@ -18,9 +20,7 @@ class App extends Component {
   }
   
   componentDidMount() {
-    document.querySelector('#weapon').addEventListener('collide', function (evt) {
-      console.log('helloAWEFAWJIFEAEFJWAEJ1');
-    });
+    this.props.setHealth(10);
   }
 
   render() {
@@ -47,4 +47,12 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  zombies: state.gameState.zombies
+})
+
+const mapDispatchToProps = dispatch => ({
+  setHealth: (health) => dispatch(setHealth(health))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

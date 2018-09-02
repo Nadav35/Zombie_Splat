@@ -9,7 +9,7 @@ class GameState extends Component {
     this.state = {
       fontSize: "5%",
       score: 0,
-      playerHealth: 10,
+      playerHealth: this.props.health,
       gameOver: false
     }
   }

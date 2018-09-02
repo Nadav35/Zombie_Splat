@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { resetGame } from '../actions/game_state_actions';
+import { setHealth } from '../actions/player_actions';
 
 class GameEnd extends Component {
   constructor(props) {
@@ -15,8 +16,10 @@ class GameEnd extends Component {
     }
   }
   
-  
-  
+  componentDidMount() {
+    this.props.resetGame();
+    this.props.setHealth(10);
+  }
 
   render () {
     if ((this.props.gameOver || this.props.userHealth <= 0) && this.props.zombieCount > 0) {
@@ -56,6 +59,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
+  resetGame: () => dispatch(resetGame()),
+  setHealth: (health) => dispatch(setHealth(health)) 
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameEnd);
