@@ -14,7 +14,11 @@ export default (state = 0, action) => {
     case SET_ZOMBIE_COUNT:
       return action.count;
     case REMOVE_ZOMBIE:
-      return state - 1;
+      if (state === 0) {
+        return 0;
+      } else {
+        return state - 1;
+      }
     case RESET_ZOMBIES:
       return 0;
     default:
