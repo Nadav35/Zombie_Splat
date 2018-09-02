@@ -9,11 +9,13 @@ class GameEnd extends Component {
 
   componentDidUpdate() {
     if (this.props.gameOver === true) {
-      document.querySelector('body').removeEventListener('keydown', (e) => {console.log(e)});
+      // setTimeout(() => {
+      //   // document.querySelector('body').removeEventListener('keydown', handler);
+      // }, 0);
     }
   }
   
-  component
+  
 
   render () {
     if ((this.props.gameOver || this.props.userHealth <= 0) && this.props.zombieCount > 0) {
@@ -26,7 +28,7 @@ class GameEnd extends Component {
         >
         </a-text>
       )
-    } else if (this.props.gameOver) {
+    } else if (this.props.gameOver || this.props.zombieCount === 0) {
       return (
         <a-text
           value="Good Job, on to the next!"
