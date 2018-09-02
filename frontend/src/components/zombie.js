@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { Entity } from 'aframe-react';
 import { removeZombie } from '../actions/zombie_actions';
 import { setHealth } from '../actions/player_actions';
+
 class Zombie extends Component {
   constructor(props) {
     super(props);
@@ -24,9 +25,7 @@ class Zombie extends Component {
   }
 
   componentDidMount() {
-
     document.querySelector(`#zombie-hitbox${this.props.hitBoxId}`).addEventListener("collide", (e) => {
-         
       if (e.detail.body.el.getAttribute('id') === "bullets") {
 
         this.setState({ zombieHealth: this.state.zombieHealth - 1 });
@@ -51,7 +50,6 @@ class Zombie extends Component {
         e.target.body.mass = 9999;
         this.props.setHealth(this.props.health - 1);
         this.setState({health: this.state.health - 1})
-   
       }
     })
   }
@@ -96,7 +94,8 @@ class Zombie extends Component {
 
 const mapStateToProps = state => ({
   zombies: state.gameState.zombie,
-  health: state.gameState.player.health
+  health: state.gameState.player.health,
+  gameOver: state.gameState.gameOver
 })
 
 const mapDispatchToProps = dispatch => ({
