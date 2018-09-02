@@ -73,12 +73,14 @@ class SessionForm extends React.Component {
     return (
       <div className="welcome-page">
         <div className="title-container">
-          <h1>Welcome to Zombiesplat</h1>
+          {/* <h1>Welcome to Zombiesplat</h1> */}
           <h3>IN 3D!!!</h3>
         </div>
+        {/* <h3>IN 3D!!!</h3> */}
         
         
         <div className="session-container">
+          <h3>IN 3D!!!</h3>
           <div className="session-form">
             <form className="form">
               <h2>{this.props.formType}</h2>
@@ -131,12 +133,7 @@ class SessionForm extends React.Component {
 
             </form>
           </div>
-          <div className="zombie">
-            {/* <img src="./monster.gif" /> */}
-            <div className="background-div">
-
-            </div>
-          </div>
+          
         </div>
         
       </div>

@@ -40,7 +40,7 @@ router.post('/login', (req, res) => {
                 .then(isMatch => {
                     if (isMatch) {
                         // res.json({msg: 'Success'});
-                        const payload = { id: user.id, name: user.name };
+                        const payload = { id: user.id, name: user.name, highScore: user.highScore };
 
                         jsonwebtoken.sign(
                             payload,
@@ -89,7 +89,7 @@ router.post('/register', (req, res) => {
                         newUser.password = hash;
                         newUser.save()
                             .then(user => {
-                const payload = { id: user.id, name: user.name };
+                                const payload = { id: user.id, name: user.name, highScore: user.highScore };
 
                 jsonwebtoken.sign(
                   payload,

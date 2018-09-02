@@ -16,6 +16,7 @@ class GameEnd extends Component {
   }
   
   
+  
 
   render () {
     if ((this.props.gameOver || this.props.userHealth <= 0) && this.props.zombieCount > 0) {

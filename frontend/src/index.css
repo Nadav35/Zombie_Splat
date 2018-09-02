@@ -23,9 +23,9 @@ body {
 
 h3 {
   position: absolute;
-  top: 0;
+  top: 100px;
   right: 80px;
-  /* font-size: 30px; */
+  font-size: 80px;
   animation-name: spin;
   animation-duration: 5s;
   animation-timing-function: linear;
@@ -50,15 +50,17 @@ h1 {
 }
 
 h2 {
-  font-size: 35px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  color: red;
+  font-size: 40px;
+  font-family: cursive;
+  color: black;
+  /* background: black; */
+  font-weight: 2000;
 }
 
 .welcome-page {
   text-align: center;
   /* background: #ccc; */
-  min-height: 75vh;
+  /* min-height: 75vh; */
 
   
 }
@@ -88,14 +90,30 @@ img {
 }
 
 .session-container {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+  /* display: grid; */
+  /* grid-template-columns: 1fr 2fr; */
   grid-gap: 20px;
+  position: relative;
   /* background: black; */
+  height: 100vh;
+  background-image: url("./assets/z-app.jpg");
+   background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 1;
+}
+
+input {
+  opacity: 1;
 }
 
 .session-form {
   /* border-right: 1px solid lightblue; */
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 200px;
+  /* bottom: 0; */
 }
 
 input {
@@ -121,6 +139,12 @@ input {
   font-size: 20px;
   
 }
+
+label {
+  color: #fff;
+}
+
+
 
 .form-submit {
   /* align-content: center;
@@ -162,6 +186,7 @@ button:hover {
 .form-footer aside{
   font-family: cursive;
   font-size: 23px;
+  color: red;
 }
 
 
@@ -169,7 +194,7 @@ a {
   text-decoration: none;
   /* align-self: center; */
   font-family: cursive;
-  font-size: 23px;
+  font-size: 30px;
   color: red;
 
   
