@@ -8,6 +8,7 @@ import configureStore from './store/store';
 import registerServiceWorker from './registerServiceWorker';
 import Root from './components/root';
 import {removeZombie, resetZombies, setZombieCount} from './actions/zombie_actions';
+import {setGameOver, resetGame, setGameOn} from './actions/game_state_actions';
 
 document.addEventListener("DOMContentLoaded", () => {
   let store = configureStore();
@@ -21,7 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Check for expired token
     const currentTime = Date.now() / 1000;
+<<<<<<< HEAD
     
+=======
+>>>>>>> b96bc3703ba4013b9d40dd40eddc75e134e6984a
     if (decoded.exp < currentTime) {
       // Logout user
       store.dispatch(APIUtil.logoutUser());
@@ -30,11 +34,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  //Debugging Actions / Store
   window.getState = store.getState;
   window.dispatch = store.dispatch;
   window.removeZombie = removeZombie;
   window.resetZombies = resetZombies;
   window.setZombieCount = setZombieCount;
+  window.setGameOver = setGameOver;
+  window.setGameOn = setGameOn;
+  window.resetGame = resetGame;
 
 
 

@@ -25,7 +25,7 @@ class GameState extends Component {
     const health = this.props.health < 0 ? 0 :this.props.health;
     return (
       <a-entity>
-        <Timer position={"-.15 -.7 -1"} seconds={15}/>
+        <Timer position={"-.15 -.7 -1"} seconds={45}/>
         <a-text 
           value={`Score: ${this.state.score}`}
           position="-1 -.7 -1"

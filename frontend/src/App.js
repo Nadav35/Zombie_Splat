@@ -22,6 +22,7 @@ class App extends Component {
       console.log('helloAWEFAWJIFEAEFJWAEJ1');
     });
   }
+
   render() {
     return (
       <a-scene phsyics="debug: true;" id="scene">
