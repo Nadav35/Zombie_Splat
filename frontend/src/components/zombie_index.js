@@ -48,7 +48,7 @@ class ZombieIndex extends Component {
 }
 
 const mapStateToProps = state => ({
-  zombies: state.entities.zombies
+  zombies: state.gameState.zombies
 })
 
 const mapDispatchToProps = dispatch => ({
