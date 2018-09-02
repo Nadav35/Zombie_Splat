@@ -10,7 +10,6 @@ import Bullets from './components/bullets';
 import Sky from './components/sky';
 import Zombie from './components/zombie';
 import ZombieIndex from './components/zombie_index';
-import GameOver from './components/game_over';
 
 
 class App extends Component {
@@ -23,6 +22,7 @@ class App extends Component {
       console.log('helloAWEFAWJIFEAEFJWAEJ1');
     });
   }
+
   render() {
     return (
       <a-scene phsyics="debug: true;" id="scene">

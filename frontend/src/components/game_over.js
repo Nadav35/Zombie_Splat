@@ -8,8 +8,8 @@ class GameOver extends Component {
       return (
         <a-text
           value="Game Over"
-          position="0 1.5 -1"
           width="10%"
+          position="-1 0 -2"
           font="mozillavr"
         >
         </a-text>
