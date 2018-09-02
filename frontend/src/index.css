@@ -31,10 +31,16 @@ h3 {
   animation-timing-function: linear;
 }
 
+@keyframes spin {
+  
+}
+
 @keyframes popup {
   0% {opacity: 0;}
   100% {opacity: 1;}
 }
+
+
 
 h1 {
   font-size: 40px;
