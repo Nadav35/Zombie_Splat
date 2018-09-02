@@ -4,13 +4,13 @@ import Weapon from './weapon';
 import GameState from './game_state';
 import 'aframe-physics-system';
 import Controller from './controller';
-import GameOver from './game_over';
+import GameEnd from './game_end';
 
 class Camera extends Component {
   render() {
     return (
       <a-entity id="camera" camera look-controls  position="0 1.5 0">
-        <GameOver />
+        <GameEnd />
         <a-cursor 
         id="cursor"
         ></a-cursor>

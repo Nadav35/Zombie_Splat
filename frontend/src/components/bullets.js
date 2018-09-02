@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'aframe';
 import 'aframe-physics-system';
 import {Entity} from 'aframe-react';
+import { connect } from 'react-redux';
 
 class Bullets extends Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class Bullets extends Component {
 
   componentDidMount() {
     let fired = false;
-
+    
     document.querySelector('body').addEventListener('keydown', function (evt) { 
       if (evt.keyCode === 32) {
         if (!fired) {
@@ -70,11 +71,20 @@ class Bullets extends Component {
   }
 
   render() {
-      return (
-      <a-entity>
-      </a-entity>
-      )
+    return (
+    <a-entity>
+    </a-entity>
+    )
   }
 };
 
-export default Bullets;
+const mapStateToProps = state => ({
+  zombies: state.gameState.zombie,
+  health: state.gameState.player.health,
+  gameOver: state.gameState.gameOver
+})
+
+const mapDispatchToProps = dispatch => ({
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Bullets);
