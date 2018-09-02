@@ -28,7 +28,7 @@ class GameEnd extends Component {
         >
         </a-text>
       )
-    } else if (this.props.gameOver) {
+    } else if (this.props.gameOver || this.props.zombieCount === 0) {
       return (
         <a-text
           value="Good Job, on to the next!"
