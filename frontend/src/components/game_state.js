@@ -24,7 +24,7 @@ class GameState extends Component {
   }
 
   render() {
-    const health = this.props.health < 0 ? 0 :this.props.health;
+    const health = this.props.health < 0 ? 0 : this.props.health;
     return (
       <a-entity>
         <Timer position={"-.15 -.7 -1"} seconds={15}/>
