@@ -12,9 +12,7 @@ class Controller extends Component {
            console.log('I was clicked!');
        });
     }
-    handleClick() {
-        console.log('hellOOOOOOOOOOOOOOAWEFAWEo');
-    }
+ 
     render() {
         return(
             <a-entity id="cube" geometry="primitive: box" material="color: blue"> </a-entity>
