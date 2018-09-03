@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { resetGame } from '../actions/game_state_actions';
 import { setHealth } from '../actions/player_actions';
+import { nextLevel } from '../actions/level_actions';
 import { updateHighScore } from '../util/session_api_util';
 
 class GameEnd extends Component {
@@ -27,7 +28,7 @@ class GameEnd extends Component {
   }
 
   render () {
-    if ((this.props.gameOver || this.props.userHealth <= 0) && this.props.zombieCount > 0) {
+    if ((this.props.gameOver || this.props.userHealth <= 0) && (this.props.zombieCount > 0 || this.props.zombieCount === null)) {
       return (
         <a-text
           value="Game Over"
@@ -37,7 +38,12 @@ class GameEnd extends Component {
         >
         </a-text>
       )
-    } else if (this.props.gameOver || this.props.zombieCount === 0) {
+    } else if (this.props.zombieCount === 0) {
+      setTimeout(() => {
+        this.props.nextLevel();
+        this.props.resetGame();
+      }, 1000);
+      // this.props.resetGame();
       return (
         <a-text
           value="Good Job, on to the next!"
@@ -68,7 +74,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   resetGame: () => dispatch(resetGame()),
   setHealth: (health) => dispatch(setHealth(health)),
-  updateHighScore: (highScore) => dispatch(updateHighScore(highScore))
+  updateHighScore: (highScore) => dispatch(updateHighScore(highScore)),
+  nextLevel: () => dispatch(nextLevel())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameEnd);
