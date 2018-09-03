@@ -13,12 +13,12 @@ class GameEnd extends Component {
     let highScore;
     highScore = this.props.user.highScore < this.props.score ? this.props.score : this.props.user.highScore
   
-    if (this.props.gameOver === true) {
-      this.props.updateHighScore({
-        id: this.props.user.id,
-        highScore
-      });
-    }
+    // if (this.props.gameOver === true) {
+    //   this.props.updateHighScore({
+    //     id: this.props.user.id,
+    //     highScore
+    //   });
+    // }
   }
   
   componentDidMount() {
