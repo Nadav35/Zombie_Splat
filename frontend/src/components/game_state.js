@@ -8,7 +8,7 @@ class GameState extends Component {
     super(props);
     this.state = {
       fontSize: "5%",
-      // score: this.props.score,
+      score: this.props.score,
       playerHealth: this.props.health,
       gameOver: false,
       seconds: 15,
@@ -28,6 +28,8 @@ class GameState extends Component {
     this.setState({currentLevel: this.props.currentLevel})
   }
   componentWillReceiveProps(newProps) {
+    this.setState({score: newProps.score})
+
     if(this.state.currentLevel !== newProps.currentLevel) {
       this.setState({seconds: 15});
     }
@@ -36,15 +38,9 @@ class GameState extends Component {
     const health = this.props.health < 0 ? 0 : this.props.health;
     return (
       <a-entity>
-<<<<<<< HEAD
-        <Timer position={"-.15 -.7 -1"} seconds={5}/>
-        <a-text
-          value={`Score: ${this.props.score}`}
-=======
         <Timer position={"-.15 -.7 -1"} seconds={this.state.seconds} currentLevel={this.props.currentLevel}/>
         <a-text 
           value={`Score: ${this.state.score}`}
->>>>>>> 7b3cffba5e76896b1f8f83a7b8dd9361d0f58480
           position="-1 -.7 -1"
           width="2%"
           font="mozillavr"
@@ -64,11 +60,8 @@ class GameState extends Component {
 const mapStateToProps = state => ({
   health: state.gameState.player.health,
   gameOver: state.gameState.gameOver,
-<<<<<<< HEAD
-  score: state.gameState.score
-=======
+  score: state.gameState.score,
   currentLevel: state.gameState.currentLevel
->>>>>>> 7b3cffba5e76896b1f8f83a7b8dd9361d0f58480
 })
 
 const mapDispatchToProps = dispatch => ({
