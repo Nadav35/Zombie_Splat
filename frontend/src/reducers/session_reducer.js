@@ -1,5 +1,6 @@
 import {
   RECEIVE_CURRENT_USER,
+  RECEIVE_ALL_USERS
 } from '../util/session_api_util';
 
 const _nullUser = Object.freeze({
@@ -15,6 +16,10 @@ const sessionReducer = (state = _nullUser, action) => {
         name: action.payload.name,
         highScore: action.payload.highScore
       };
+    case RECEIVE_ALL_USERS:
+      return {
+        users: action.users
+      }
     default:
       return state;
   }

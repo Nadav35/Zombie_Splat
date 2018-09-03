@@ -20,6 +20,36 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
     });
 });
 
+router.post('/updateHighScore', (req, res) => {
+  
+  const id = req.body.id;
+  console.log(id);
+  
+  const highScore = req.body.highScore;
+  User.findById(id)
+    .then(user => {
+      console.log(user);
+      
+      user.highScore = req.body.highScore;
+      user.save()
+        .then(user => {
+          res.json({
+            id: user.id, name: user.name, highScore: user.highScore
+          });
+        });
+    });
+});
+
+router.get('/getUsers', (req, res) => {
+  User.find({}).sort({highScore: -1})
+    .then(users => {
+      res.json({
+        users
+      });
+    });
+
+});
+
 router.post('/login', (req, res) => {
     const { errors, isValid } = validateLoginInput(req.body);
     if (!isValid) {
@@ -62,7 +92,7 @@ router.post('/login', (req, res) => {
 router.post('/highscore', (req, res) => {
     User.findOne({id: req.body.id})
     .then((user) => {
-        user.highScore = req.body.highScore
+        user.highScore = req.body.highScore;
         user.save();
     })
 })
