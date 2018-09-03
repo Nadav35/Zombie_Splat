@@ -31,7 +31,7 @@ class ZombieIndex extends Component {
   componentWillReceiveProps(newProps) {
     if(newProps.currentLevel !== this.state.currentLevel) {
       
-      this.props.setZombieCount(this.map[newProps.currentLevel].length - 6);
+      this.props.setZombieCount(this.map[newProps.currentLevel].length - 7);
       
       this.setState({currentLevel: newProps.currentLevel})
     }
