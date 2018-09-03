@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { Entity } from 'aframe-react';
 import { removeZombie } from '../actions/zombie_actions';
 import { setHealth } from '../actions/player_actions';
+import { addHundred, addFifty, resetScore } from '../actions/score_actions';
 
 class Zombie extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class Zombie extends Component {
     this.state = {
       health: this.props.health,
       zombieHealth: 2,
-      position: `${props.pX} ${props.pY} ${props.pZ}`,
+      position: `${this.props.pX} ${this.props.pY} ${this.props.pZ}`,
       hit: false,
       intervalId: 0
     }
@@ -34,6 +35,11 @@ class Zombie extends Component {
       }
       if (this.state.zombieHealth <= 0) {
         setTimeout(() => {
+          if (parseInt(e.target.id.slice(-1)) > 3) {
+            this.props.addHundred();
+          } else {
+            this.props.addFifty(); 
+          }
           if (e.detail.target.el) {
             this.removeZombie();
             clearInterval(this.state.intervalId)
@@ -65,12 +71,13 @@ class Zombie extends Component {
         }, 5000);
       }
       this.setState({ intervalId })
-      if(this.state.health <= 0) {
-        clearInterval(intervalId);
-      }
     })
   }
-
+  componentWillReceiveProps(newProps) {
+    if(newProps.health <= 0) {
+      clearInterval(this.state.intervalId);
+    }
+  }
   componentWillUnmount () {
     clearInterval(this.state.intervalId);
   }
@@ -116,7 +123,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   removeZombie: () => dispatch(removeZombie()),
-  setHealth: (health) => dispatch(setHealth(health))
+  setHealth: (health) => dispatch(setHealth(health)),
+  addHundred: () => dispatch(addHundred()),
+  addFifty: () => dispatch(addFifty())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Zombie);

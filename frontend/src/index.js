@@ -9,6 +9,7 @@ import registerServiceWorker from './registerServiceWorker';
 import Root from './components/root';
 import {removeZombie, resetZombies, setZombieCount} from './actions/zombie_actions';
 import {setGameOver, resetGame, setGameOn} from './actions/game_state_actions';
+import { addFifty, addHundred, resetScore } from './actions/score_actions';
 
 document.addEventListener("DOMContentLoaded", () => {
   let store = configureStore();
@@ -40,8 +41,10 @@ document.addEventListener("DOMContentLoaded", () => {
   window.setGameOver = setGameOver;
   window.setGameOn = setGameOn;
   window.resetGame = resetGame;
-
-
+  window.addHundred = addHundred;
+  window.addFifty = addFifty;
+  window.resetScore = resetScore
+  
 
   ReactDOM.render(<Root store={store}/>, document.getElementById('root'));
   registerServiceWorker();

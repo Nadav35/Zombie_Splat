@@ -14,21 +14,31 @@ class ZombieIndex extends Component {
     this.state = {
       zomsEmpty: true
     }
-    this.positions = [{ pX: "8", pY: "1", pZ: "-6" }, { pX: "4", pY: "1", pZ: "-9" }, { pX: "3", pY: "1", pZ: "-2" },
+    
+    this.positions = [{ pX: "5", pY: "1", pZ: "-6" }, { pX: "4", pY: "1", pZ: "-9" }, { pX: "3", pY: "1", pZ: "-2" },
                      { pX: "-9", pY: "1", pZ: "-4" }, { pX: "-5", pY: "1", pZ: "-12" }, { pX: "-10", pY: "1", pZ: "-16" },
-                     { pX: "0", pY: "1", pZ: "-10" }, { pX: "7", pY: "1", pZ: "-15" }, { pX: "10", pY: "1", pZ: "-14" }];
+                     { pX: "0", pY: "1", pZ: "-10" }];
+    this.positions2 = [{ pX: "-5", pY: "1", pZ: "-6" }, { pX: "4", pY: "1", pZ: "-9" }, { pX: "3", pY: "1", pZ: "-2" }, { pX: "1", pY: "1", pZ: "-10" },
+                     { pX: "7", pY: "1", pZ: "-15" }, { pX: "10", pY: "1", pZ: "-14" }, { pX: "4", pY: "1", pZ: "-11" }, { pX: "-5", pY: "1", pZ: "-17" },
+                     { pX: "-8", pY: "1", pZ: "-16" }, { pX: "5  ", pY: "1", pZ: "-14" }];
+    this.map = [[],this.positions, this.positions2];
     this.resetZoms = this.resetZoms.bind(this);
   }
 
   componentDidMount() {
-    this.props.setZombieCount(this.positions.length);
+    this.props.setZombieCount(this.map[this.props.currentLevel].length);
   }
+  // componentWillReceiveProps(newProps) {
+  //   this.props.setZombieCount(this.map[this.props.currentLevel].length);
+  // }
+  
+  // componentWillUpdate () {
+  //   setTimeout(() => {
 
-  componentWillUpdate () {
-    if (this.props.zombies === 0) {
-      this.resetZoms();
-    }
-  }
+  //     this.props.setZombieCount(this.map[this.props.currentLevel].length);
+  //   }, 1000);
+
+  // }
 
   resetZoms () {
     if (this.numZoms === 0) {
@@ -39,8 +49,11 @@ class ZombieIndex extends Component {
   }
   
   render () {
+    const level = this.map[this.props.currentLevel];
+
     return (
-      this.positions.map((position, idx) => {
+      level.map((position, idx) => {
+        console.log("WAEFIWEAFAWEPF  ", position);
         return (<Zombie key={idx} hitBoxId={idx} pX={position.pX} pY={position.pY} pZ={position.pZ}/>)
       })
     )
@@ -48,7 +61,8 @@ class ZombieIndex extends Component {
 }
 
 const mapStateToProps = state => ({
-  zombies: state.gameState.zombies
+  zombies: state.gameState.zombies,
+  currentLevel: state.gameState.currentLevel
 })
 
 const mapDispatchToProps = dispatch => ({

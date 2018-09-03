@@ -9,7 +9,8 @@ class Timer extends Component {
     super(props);
     this.state = {
       time: {},
-      seconds: this.props.seconds
+      seconds: this.props.seconds,
+      currentLevel: this.props.currentLevel
     }
     this.timer = 0;
     this.startTimer = this.startTimer.bind(this);
@@ -29,11 +30,16 @@ class Timer extends Component {
     }
     return time;
   }
-
   componentDidMount () {
     let timeLeft = this.secondsToTime(this.state.seconds);
     this.setState({time: timeLeft});
     this.startTimer();
+  }
+  componentWillReceiveProps(newProps) {
+    console.log("CURRENT LEVL", newProps.currentLevel);
+    if(this.state.currentLevel !== newProps.currentLevel) {
+      this.setState({seconds: newProps.seconds});
+    }
   }
   
   startTimer() {

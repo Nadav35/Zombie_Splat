@@ -90,6 +90,14 @@ router.post('/login', (req, res) => {
         });
 });
 
+router.post('/highscore', (req, res) => {
+    User.findOne({id: req.body.id})
+    .then((user) => {
+        user.highScore = req.body.highScore
+        user.save();
+    })
+})
+
 router.post('/register', (req, res) => {
   
     const { errors, isValid } = validateRegisterInput(req.body);

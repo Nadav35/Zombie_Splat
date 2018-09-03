@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { resetGame } from '../actions/game_state_actions';
 import { setHealth } from '../actions/player_actions';
+import { nextLevel } from '../actions/level_actions';
+import { updateHighScore } from '../util/session_api_util';
 
 class GameEnd extends Component {
   constructor(props) {
@@ -9,11 +11,15 @@ class GameEnd extends Component {
   }
 
   componentDidUpdate() {
-    if (this.props.gameOver === true) {
-      // setTimeout(() => {
-      //   // document.querySelector('body').removeEventListener('keydown', handler);
-      // }, 0);
-    }
+    let highScore;
+    highScore = this.props.user.highScore < this.props.score ? this.props.score : this.props.user.highScore
+  
+    // if (this.props.gameOver === true) {
+    //   this.props.updateHighScore({
+    //     id: this.props.user.id,
+    //     highScore
+    //   });
+    // }
   }
 
   
@@ -24,7 +30,7 @@ class GameEnd extends Component {
   }
 
   render () {
-    if ((this.props.gameOver || this.props.userHealth <= 0) && this.props.zombieCount > 0) {
+    if ((this.props.gameOver || this.props.userHealth <= 0) && (this.props.zombieCount > 0 || this.props.zombieCount === null)) {
       return (
         <a-text
           value="Game Over"
@@ -34,7 +40,12 @@ class GameEnd extends Component {
         >
         </a-text>
       )
-    } else if (this.props.gameOver || this.props.zombieCount === 0) {
+    } else if (this.props.zombieCount === 0) {
+      setTimeout(() => {
+        this.props.nextLevel();
+        this.props.resetGame();
+      }, 1000);
+      // this.props.resetGame();
       return (
         <a-text
           value="Good Job, on to the next!"
@@ -57,12 +68,16 @@ class GameEnd extends Component {
 const mapStateToProps = state => ({
   gameOver: state.gameState.gameOver,
   zombieCount: state.gameState.zombies,
-  userHealth: state.gameState.player.health
+  userHealth: state.gameState.player.health,
+  user: state.session,
+  score: state.gameState.score
 })
 
 const mapDispatchToProps = dispatch => ({
   resetGame: () => dispatch(resetGame()),
-  setHealth: (health) => dispatch(setHealth(health)) 
+  setHealth: (health) => dispatch(setHealth(health)),
+  updateHighScore: (highScore) => dispatch(updateHighScore(highScore)),
+  nextLevel: () => dispatch(nextLevel())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameEnd);
