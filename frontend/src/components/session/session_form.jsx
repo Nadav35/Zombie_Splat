@@ -94,18 +94,14 @@ class SessionForm extends React.Component {
         {/* <div className="title-container">
           <h1>Welcome to Zombiesplat</h1>
           <h3>IN 3D!!!</h3>
-        </div>
-        <h3>IN 3D!!!</h3> */}
-        
-        
+          </div>
+          <h3>IN 3D!!!</h3> */}
         
         <div className="session-container">
           <div className="high-scores">
             <h1>High Scores</h1>
             {this.getHighScore()}
-
-          </div>
-          
+          </div>      
           {/* <h3>IN 3D!!!</h3> */}
           <div className="session-form">
             <form className="form">
@@ -122,7 +118,6 @@ class SessionForm extends React.Component {
                 placeholder="Enter your email"
                 onChange={this.update('email')}
                 type="text"/>
-                {/* <i className="fas fa-envelope-square"></i> */}
               </div>
               
               <div className="password-div">
@@ -133,7 +128,6 @@ class SessionForm extends React.Component {
                 placeholder="Enter your password"
                 onChange={this.update('password')}
                 type="password"/>
-                {/* <i className="fas fa-unlock"></i> */}
               </div>
               
               <div className="buttons">
@@ -147,21 +141,12 @@ class SessionForm extends React.Component {
                   Demo User
                 </button>
               </div>
-              
-              
-
               <div className="form-footer">
-                
-                <aside>or</aside>{this.props.navLink} 
-                
-              
+                <aside>or</aside>{this.props.navLink}                 
               </div>
-
             </form>
           </div>
-          
         </div>
-        
       </div>
     );
   }
