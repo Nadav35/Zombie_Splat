@@ -16,7 +16,6 @@ import { addHundred, addFifty, resetScore } from '../actions/score_actions';
 class Zombie extends Component {
   constructor(props) {
     super(props);
-    console.log("HEALTHTHHWERWE",this.props.health);
     this.state = {
       health: this.props.health,
       zombieHealth: 2,
@@ -29,52 +28,66 @@ class Zombie extends Component {
 
   componentDidMount() {
     clearInterval(this.state.intervalId);
-    document.querySelector(`#zombie-hitbox${this.props.hitBoxId}`).addEventListener("collide", (e) => {
-      if (e.detail.body.el.getAttribute('id') === "bullets") {
-        this.setState({ zombieHealth: this.state.zombieHealth - 1 });
-      }
-      if (this.state.zombieHealth <= 0) {
-        setTimeout(() => {
-          if (parseInt(e.target.id.slice(-1)) > 3) {
-            this.props.addHundred();
-          } else {
-            this.props.addFifty(); 
-          }
-          if (e.detail.target.el) {
-            this.removeZombie();
-            clearInterval(this.state.intervalId)
-            e.detail.target.el.parentNode.removeChild(e.detail.target.el);
-          }
-          if (e.detail.body.el) {
-            e.detail.body.el.parentNode.removeChild(e.detail.body.el);
-          }
-        }, 0);
-      }
-    })
+    const hitbox = document.querySelector(`#zombie-hitbox${this.props.hitBoxId}`);
+    const scene = document.querySelector('#scene');
+    if(hitbox) {
 
-    document.querySelector(`#zombie-hitbox${this.props.hitBoxId}`).addEventListener("animationcomplete", (e) => {
-      this.setState({position: e.target.body.position});
-      let intervalId = 0;
-      if(this.state.health > 0) {
-        e.target.body.mass = 9999;
-        
-        setTimeout(() => {
-          // this.setState({health: this.props.health - 1});
-          this.props.setHealth(this.props.health - 1);
-        }, 0);
-        intervalId = setInterval(() => {
-          if (this.state.health > 0) {
-            
+      hitbox.addEventListener("collide", (e) => {
+        if (e.detail.body.el.getAttribute('id') === "bullets") {
+          this.setState({ zombieHealth: this.state.zombieHealth - 1 });
+        }
+        if (this.state.zombieHealth <= 0) {
+          
+          setTimeout(() => {
+            clearInterval(this.state.intervalId)
+            if (parseInt(e.target.id.slice(-1)) > 3) {
+              this.props.addHundred();
+            } else {
+              this.props.addFifty(); 
+            }
+            if (e.detail.target.el) {
+              
+              if(scene.contains(e.detail.target.el)) {
+                this.removeZombie();
+
+                e.detail.target.el.parentNode.removeChild(e.detail.target.el);
+              }
+            }
+            if (e.detail.body.el) {
+              if(scene.contains(e.detail.body.el)) {
+                e.detail.body.el.parentNode.removeChild(e.detail.body.el);
+              }
+            }
+          }, 0);
+        }
+      })
+
+      hitbox.addEventListener("animationcomplete", (e) => {
+        this.setState({position: e.target.body.position});
+        let intervalId = 0;
+        if(this.state.health > 0) {
+          e.target.body.mass = 9999;
+          
+          setTimeout(() => {
             // this.setState({health: this.props.health - 1});
             this.props.setHealth(this.props.health - 1);
-          }
-        }, 5000);
-      }
-      this.setState({ intervalId })
-    })
+          }, 0);
+          intervalId = setInterval(() => {
+            if (this.state.health > 0) {
+              
+              // this.setState({health: this.props.health - 1});
+              this.props.setHealth(this.props.health - 1);
+            }
+          }, 5000);
+        }
+        this.setState({ intervalId })
+      })
+    }
+
   }
   componentWillReceiveProps(newProps) {
-    if(newProps.health <= 0) {
+
+    if (this.state.health <= 0) {
       clearInterval(this.state.intervalId);
     }
   }
@@ -87,7 +100,8 @@ class Zombie extends Component {
   }
 
   render() {
-    let showMonster = this.props.hitBoxId > 3 ? true: false;
+  
+    let showMonster = this.props.idx > 3 ? true: false;
     let dur = 5000;
     if(Math.abs(this.props.pZ) > 10) {
       let offset = Math.abs(this.props.pZ) - 10;
@@ -96,7 +110,7 @@ class Zombie extends Component {
     return (
       <Entity
         geometry={`primitive: box; height: 1.6; depth: ${showMonster ? 2: ""}` }
-        material="side: double; transparent: true; opacity: 0.1;"
+        material="side: double; transparent: true; opacity: 0;"
         id={`zombie-hitbox${this.props.hitBoxId}`}
         className="hitbox"
         linearDamping="50"

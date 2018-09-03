@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import 'aframe';
 import Timer from './timer';
 import { connect } from 'react-redux';
+import { resetLevel } from '../actions/level_actions';
+import { withRouter } from 'react-router-dom';
+
+import { resetGame } from '../actions/game_state_actions';
 
 class GameState extends Component {
   constructor(props) {
@@ -14,6 +18,7 @@ class GameState extends Component {
       seconds: 15,
       currentLevel: 1
     }
+    this.keydownHandler = this.keydownHandler.bind(this);
   }
   
   decremHealth () {
@@ -24,13 +29,25 @@ class GameState extends Component {
       }
     }
   }
+  keydownHandler(e) {
+    
+    if(e.keyCode === 82) {
+      
+     
+      window.location.reload();
+    }
+  } 
   componentDidMount() {
-    this.setState({currentLevel: this.props.currentLevel})
+    const body = document.querySelector('body');
+
+    this.setState({currentLevel: this.props.currentLevel});
+    body.addEventListener('keydown', this.keydownHandler);
   }
   componentWillReceiveProps(newProps) {
     this.setState({score: newProps.score})
 
     if(this.state.currentLevel !== newProps.currentLevel) {
+      this.setState({currentLevel: newProps.currentLevel});
       this.setState({seconds: 15});
     }
   } 
@@ -65,6 +82,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
+  resetLevel: () => dispatch(resetLevel()),
+  resetGame: () => dispatch(resetGame())
 });
 
-export default connect(mapStateToProps, null)(GameState);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GameState));
