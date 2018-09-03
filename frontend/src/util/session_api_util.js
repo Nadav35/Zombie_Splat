@@ -46,12 +46,7 @@ export const updateHighScore = userData => dispatch => {
       return dispatch(setCurrentUser(res.data))
     });
   }
-// //Set High Score
-// export const updateHighScore = (userData) => dispatch => {
-//   return axios
-//     .post('api/users/highscore', userData)
-//     .then((res) => {dispatch(resetScore())});
-// }
+
 
 // Register User
 export const registerUser = (userData, history) => dispatch => {
