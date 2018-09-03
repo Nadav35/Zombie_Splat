@@ -1,5 +1,6 @@
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
+import { resetScore } from '../actions/score_actions';
 
 const $ = window.$;
 export const GET_ERRORS = 'GET_ERRORS';
@@ -17,6 +18,13 @@ export const setAuthToken = token => {
   }
 };
 
+//Set High Score
+export const updateHighScore = (userData) => dispatch => {
+  return axios
+    .post('api/users/highscore', userData)
+    .then((res) => {dispatch(resetScore())});
+}
+
 // Register User
 export const registerUser = (userData, history) => dispatch => {
   
@@ -24,8 +32,7 @@ export const registerUser = (userData, history) => dispatch => {
   return axios
     .post('/api/users/register', userData)
     .then(res => {
-      
-      
+
       // Save to localStorage
       const {token}  = res.data;
       // Set token to ls

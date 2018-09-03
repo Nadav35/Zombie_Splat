@@ -8,7 +8,7 @@ class GameState extends Component {
     super(props);
     this.state = {
       fontSize: "5%",
-      score: 0,
+      // score: this.props.score,
       playerHealth: this.props.health,
       gameOver: false
     }
@@ -27,9 +27,9 @@ class GameState extends Component {
     const health = this.props.health < 0 ? 0 : this.props.health;
     return (
       <a-entity>
-        <Timer position={"-.15 -.7 -1"} seconds={15}/>
-        <a-text 
-          value={`Score: ${this.state.score}`}
+        <Timer position={"-.15 -.7 -1"} seconds={5}/>
+        <a-text
+          value={`Score: ${this.props.score}`}
           position="-1 -.7 -1"
           width="2%"
           font="mozillavr"
@@ -44,11 +44,12 @@ class GameState extends Component {
         </a-text>
       </a-entity>
     );
-  }
+  } 
 }
 const mapStateToProps = state => ({
   health: state.gameState.player.health,
-  gameOver: state.gameState.gameOver
+  gameOver: state.gameState.gameOver,
+  score: state.gameState.score
 })
 
 const mapDispatchToProps = dispatch => ({
