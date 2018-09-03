@@ -19,7 +19,7 @@ export default (state = null, action) => {
     case NEXT_LEVEL:
       return null;
     case REMOVE_ZOMBIE:
-      if (state === 0) {
+      if (state <= 0) {
         return 0;
       } else {
         return state - 1;
