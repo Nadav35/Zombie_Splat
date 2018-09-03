@@ -36,8 +36,8 @@ class Timer extends Component {
     this.startTimer();
   }
   componentWillReceiveProps(newProps) {
-    console.log("CURRENT LEVL", newProps.currentLevel);
     if(this.state.currentLevel !== newProps.currentLevel) {
+      this.setState({currentLevel: newProps.currentLevel});
       this.setState({seconds: newProps.seconds});
     }
   }
