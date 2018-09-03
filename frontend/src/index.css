@@ -52,9 +52,10 @@ h1 {
 h2 {
   font-size: 40px;
   font-family: cursive;
-  color: black;
+  color: rosybrown;
   /* background: black; */
   font-weight: 2000;
+  margin: 0;
 }
 
 .welcome-page {
@@ -97,10 +98,33 @@ img {
   /* background: black; */
   height: 100vh;
   background-image: url("./assets/z-app.jpg");
-   background-position: center;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   opacity: 1;
+}
+
+.high-scores{
+  position: absolute;
+  left: 20px;
+}
+
+.high-scores h1 {
+  font-family: cursive;
+  font-size: 50px;
+}
+
+.high-scores ul {
+  list-style: none;
+  display: grid;
+  grid-gap: 20px;
+}
+
+.high-scores-list li {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 40px;
+  color: #fff;
 }
 
 input {
@@ -112,7 +136,7 @@ input {
   position: absolute;
   right: 0;
   left: 0;
-  top: 200px;
+  top: 150px;
   /* bottom: 0; */
 }
 
@@ -186,7 +210,7 @@ button:hover {
 .form-footer aside{
   font-family: cursive;
   font-size: 23px;
-  color: red;
+  color: blue;
 }
 
 
@@ -195,11 +219,11 @@ a {
   /* align-self: center; */
   font-family: cursive;
   font-size: 30px;
-  color: red;
+  color: blue;
 
   
 }
 
 a:hover {
-  color: blue;
+  color: red;
 }

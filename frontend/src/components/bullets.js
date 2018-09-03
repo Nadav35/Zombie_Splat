@@ -93,7 +93,8 @@ class Bullets extends Component {
 const mapStateToProps = state => ({
   zombies: state.gameState.zombie,
   health: state.gameState.player.health,
-  gameOver: state.gameState.gameOver
+  gameOver: state.gameState.gameOver,
+  user: state.session
 })
 
 const mapDispatchToProps = dispatch => ({

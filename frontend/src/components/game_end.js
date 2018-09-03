@@ -9,7 +9,19 @@ class GameEnd extends Component {
     super(props);
   }
 
- 
+  componentDidUpdate() {
+
+    if (this.props.gameOver === true) {
+      if (this.props.score > this.props.user.highScore) {
+        this.props.updateHighScore({
+          id: this.props.user.id,
+          highScore: this.props.score
+        });
+      }
+    }
+  }
+
+  
   
   componentDidMount() {
     this.props.resetGame();
