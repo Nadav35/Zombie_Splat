@@ -97,10 +97,33 @@ img {
   /* background: black; */
   height: 100vh;
   background-image: url("./assets/z-app.jpg");
-   background-position: center;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   opacity: 1;
+}
+
+.high-scores{
+  position: absolute;
+  left: 20px;
+}
+
+.high-scores h1 {
+  font-family: cursive;
+  font-size: 50px;
+}
+
+.high-scores ul {
+  list-style: none;
+  display: grid;
+  grid-gap: 20px;
+}
+
+ul li {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 40px;
+  color: #fff;
 }
 
 input {

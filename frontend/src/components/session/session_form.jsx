@@ -17,6 +17,7 @@ class SessionForm extends React.Component {
 
   componentDidMount () {
     this.props.setHealth(10);
+    this.props.fetchUsers();
   }
 
   update(property) {
@@ -58,6 +59,24 @@ class SessionForm extends React.Component {
     }
   }
 
+  getHighScore() {
+    if (this.props.users) {
+      return (
+        <ul className="high-scores-list">
+          {this.props.users.users.slice(16,22).map((user, idx) => (
+            <li key={idx}>
+              <span>{user.name}</span>
+              <span>{user.highScore}</span>
+            </li>
+          ))}
+        </ul>
+      );
+    } else {
+      return "";
+    }
+    
+  }
+
   render() {
     const nameInput = this.props.formType === 'Login' ? 
       "" : <div className="name-div">
@@ -72,15 +91,22 @@ class SessionForm extends React.Component {
       </div>;
     return (
       <div className="welcome-page">
-        <div className="title-container">
-          {/* <h1>Welcome to Zombiesplat</h1> */}
+        {/* <div className="title-container">
+          <h1>Welcome to Zombiesplat</h1>
           <h3>IN 3D!!!</h3>
         </div>
-        {/* <h3>IN 3D!!!</h3> */}
+        <h3>IN 3D!!!</h3> */}
+        
         
         
         <div className="session-container">
-          <h3>IN 3D!!!</h3>
+          <div className="high-scores">
+            <h1>High Scores</h1>
+            {this.getHighScore()}
+
+          </div>
+          
+          {/* <h3>IN 3D!!!</h3> */}
           <div className="session-form">
             <form className="form">
               <h2>{this.props.formType}</h2>

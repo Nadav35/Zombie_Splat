@@ -5,6 +5,7 @@ const $ = window.$;
 export const GET_ERRORS = 'GET_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
+export const RECEIVE_ALL_USERS = 'RECEIVE_ALL_USERS';
 
 // We can use axios to set a default header
 export const setAuthToken = token => {
@@ -16,6 +17,34 @@ export const setAuthToken = token => {
     delete axios.defaults.headers.common['Authorization'];
   }
 };
+
+export const fetchUsers = () => dispatch => {
+  
+  return axios
+    .get('/api/users/getUsers')
+    .then(res => {
+      
+      
+      return dispatch(receiveUsers(res.data));
+    });
+}
+
+export const receiveUsers = users => {
+  return {
+    type: RECEIVE_ALL_USERS,
+    users
+  };
+};
+
+export const updateHighScore = userData => dispatch => {
+  
+  return axios
+    .post('/api/users/updateHighScore', userData)
+    .then(res => {
+      
+      return dispatch(setCurrentUser(res.data))
+    });
+}
 
 // Register User
 export const registerUser = (userData, history) => dispatch => {
@@ -79,6 +108,8 @@ export const setCurrentUser = decoded => {
     payload: decoded
   };
 };
+
+
 
 // Log user out
 export const logoutUser = () => dispatch => {

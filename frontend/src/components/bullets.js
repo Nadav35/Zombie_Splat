@@ -3,6 +3,7 @@ import 'aframe';
 import 'aframe-physics-system';
 import {Entity} from 'aframe-react';
 import { connect } from 'react-redux';
+import { updateHighScore } from '../util/session_api_util';
 
 class Bullets extends Component {
   constructor(props) {
@@ -78,6 +79,10 @@ class Bullets extends Component {
   componentWillReceiveProps(newProps) {
     const body = document.querySelector('body');
     if (newProps.gameOver) {
+      // newProps.updateHighScore({
+      //   id: newProps.user.id,
+      //   highScore: 500
+      // })
       body.removeEventListener('keydown', this.keydownHandler);
     }
   }
@@ -93,10 +98,12 @@ class Bullets extends Component {
 const mapStateToProps = state => ({
   zombies: state.gameState.zombie,
   health: state.gameState.player.health,
-  gameOver: state.gameState.gameOver
+  gameOver: state.gameState.gameOver,
+  user: state.session
 })
 
 const mapDispatchToProps = dispatch => ({
+  updateHighScore: userDate => dispatch(updateHighScore(userDate))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Bullets);

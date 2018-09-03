@@ -15,6 +15,8 @@ class GameEnd extends Component {
       // }, 0);
     }
   }
+
+  
   
   componentDidMount() {
     this.props.resetGame();

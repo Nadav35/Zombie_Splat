@@ -20,6 +20,37 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
     });
 });
 
+router.post('/updateHighScore', (req, res) => {
+  
+  const id = req.body.id;
+  // console.log(id);
+  
+  const highScore = req.body.highScore;
+  User.findOne({ id })
+    .then(user => {
+      console.log(user);
+      
+      res.json(user);
+      user.highScore = req.body.highScore;
+      user.save()
+        .then(user => {
+          res.json({
+            id: user.id, name: user.name, highScore: user.highScore
+          });
+        });
+    });
+});
+
+router.get('/getUsers', (req, res) => {
+  User.find({})
+    .then(users => {
+      res.json({
+        users
+      });
+    });
+
+});
+
 router.post('/login', (req, res) => {
     const { errors, isValid } = validateLoginInput(req.body);
     if (!isValid) {
