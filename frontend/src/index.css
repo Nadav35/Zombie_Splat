@@ -96,7 +96,7 @@ img {
   grid-gap: 20px;
   position: relative;
   /* background: black; */
-  height: 100vh;
+  min-height: 100vh;
   background-image: url("./assets/z-app.jpg");
   background-position: center;
   background-repeat: no-repeat;
