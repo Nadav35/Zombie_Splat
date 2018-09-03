@@ -19,7 +19,6 @@ export const setAuthToken = token => {
   }
 };
 
-<<<<<<< HEAD
 export const fetchUsers = () => dispatch => {
   
   return axios
@@ -46,14 +45,13 @@ export const updateHighScore = userData => dispatch => {
       
       return dispatch(setCurrentUser(res.data))
     });
-=======
-//Set High Score
-export const updateHighScore = (userData) => dispatch => {
-  return axios
-    .post('api/users/highscore', userData)
-    .then((res) => {dispatch(resetScore())});
->>>>>>> 54f416d2912d3cf6259a43c372b809e546d57e43
-}
+  }
+// //Set High Score
+// export const updateHighScore = (userData) => dispatch => {
+//   return axios
+//     .post('api/users/highscore', userData)
+//     .then((res) => {dispatch(resetScore())});
+// }
 
 // Register User
 export const registerUser = (userData, history) => dispatch => {

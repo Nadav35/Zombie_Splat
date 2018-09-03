@@ -23,14 +23,13 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
 router.post('/updateHighScore', (req, res) => {
   
   const id = req.body.id;
-  // console.log(id);
+  console.log(id);
   
   const highScore = req.body.highScore;
-  User.findOne({ id })
+  User.findById(id)
     .then(user => {
       console.log(user);
       
-      res.json(user);
       user.highScore = req.body.highScore;
       user.save()
         .then(user => {
@@ -42,7 +41,7 @@ router.post('/updateHighScore', (req, res) => {
 });
 
 router.get('/getUsers', (req, res) => {
-  User.find({})
+  User.find({}).sort({highScore: -1})
     .then(users => {
       res.json({
         users
@@ -93,7 +92,7 @@ router.post('/login', (req, res) => {
 router.post('/highscore', (req, res) => {
     User.findOne({id: req.body.id})
     .then((user) => {
-        user.highScore = req.body.highScore
+        user.highScore = req.body.highScore;
         user.save();
     })
 })

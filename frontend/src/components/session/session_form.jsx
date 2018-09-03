@@ -63,7 +63,7 @@ class SessionForm extends React.Component {
     if (this.props.users) {
       return (
         <ul className="high-scores-list">
-          {this.props.users.users.slice(16,22).map((user, idx) => (
+          {this.props.users.users.slice(0,3).map((user, idx) => (
             <li key={idx}>
               <span>{user.name}</span>
               <span>{user.highScore}</span>

@@ -11,8 +11,8 @@ class GameEnd extends Component {
   }
 
   componentDidUpdate() {
-    let highScore;
-    highScore = this.props.user.highScore < this.props.score ? this.props.score : this.props.user.highScore
+    // let highScore;
+    // highScore = this.props.user.highScore < this.props.score ? this.props.score : this.props.user.highScore
   
     // if (this.props.gameOver === true) {
     //   this.props.updateHighScore({
@@ -20,6 +20,14 @@ class GameEnd extends Component {
     //     highScore
     //   });
     // }
+    if (this.props.gameOver === true) {
+      if (this.props.score > this.props.user.highScore) {
+        this.props.updateHighScore({
+          id: this.props.user.id,
+          highScore: this.props.score
+        });
+      }
+    }
   }
 
   
