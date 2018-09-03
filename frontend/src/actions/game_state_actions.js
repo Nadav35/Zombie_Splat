@@ -13,3 +13,4 @@ export const resetGame = () => ({
 export const setGameOn = () => ({
   type: SET_GAME_ON
 })
+

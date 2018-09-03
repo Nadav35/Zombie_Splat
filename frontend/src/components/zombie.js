@@ -19,7 +19,7 @@ class Zombie extends Component {
     this.state = {
       health: this.props.health,
       zombieHealth: 2,
-      position: `${props.pX} ${props.pY} ${props.pZ}`,
+      position: `${this.props.pX} ${this.props.pY} ${this.props.pZ}`,
       hit: false,
       intervalId: 0
     }
@@ -65,12 +65,13 @@ class Zombie extends Component {
         }, 5000);
       }
       this.setState({ intervalId })
-      if(this.state.health <= 0) {
-        clearInterval(intervalId);
-      }
     })
   }
-
+  componentWillReceiveProps(newProps) {
+    if(newProps.health <= 0) {
+      clearInterval(this.state.intervalId);
+    }
+  }
   componentWillUnmount () {
     clearInterval(this.state.intervalId);
   }
