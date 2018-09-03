@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { resetGame } from '../actions/game_state_actions';
+import { resetGame,  setGameOver } from '../actions/game_state_actions';
 import { setHealth } from '../actions/player_actions';
 import { nextLevel } from '../actions/level_actions';
-import { updateHighScore } from '../util/session_api_util';
 
 class GameEnd extends Component {
   constructor(props) {
@@ -11,15 +10,7 @@ class GameEnd extends Component {
   }
 
   componentDidUpdate() {
-    // let highScore;
-    // highScore = this.props.user.highScore < this.props.score ? this.props.score : this.props.user.highScore
 
-    // if (this.props.gameOver === true) {
-    //   this.props.updateHighScore({
-    //     id: this.props.user.id,
-    //     highScore
-    //   });
-    // }
     if (this.props.gameOver === true) {
       if (this.props.score > this.props.user.highScore) {
         this.props.updateHighScore({
@@ -30,14 +21,14 @@ class GameEnd extends Component {
     }
   }
 
-
-
+  
+  
   componentDidMount() {
     this.props.resetGame();
     this.props.setHealth(10);
   }
 
-  render() {
+  render () {
     if ((this.props.gameOver || this.props.userHealth <= 0) && (this.props.zombieCount > 0 || this.props.zombieCount === null)) {
       return (
         <a-text
@@ -49,20 +40,35 @@ class GameEnd extends Component {
         </a-text>
       )
     } else if (this.props.zombieCount === 0) {
-      setTimeout(() => {
-        this.props.nextLevel();
-        this.props.resetGame();
-      }, 1000);
-      // this.props.resetGame();
-      return (
-        <a-text
-          value="Good Job, on to the next!"
-          width="7%"
-          position="-1.75 0 -2"
-          font="mozillavr"
-        >
-        </a-text>
-      )
+      if(this.props.currentLevel === 1) {i
+
+        setTimeout(() => {
+          this.props.nextLevel();
+          this.props.resetGame();
+        }, 1000);
+        return (
+          <a-text
+            value="Good Job, on to the next!"
+            width="7%"
+            position="-1.75 0 -2"
+            font="mozillavr"
+          >
+          </a-text>
+        )
+      } else {
+        setTimeout(() => {
+          this.props.setGameOver();
+        }, 1000); 
+        return (
+          <a-text
+            value = "Congratulation! You Won! Press R to restart game!"
+            width="6%"
+            position="-2.5 0 -2"
+            font="mozillavr"
+          >
+          </a-text>
+        );
+      }
     } else {
       return (
         <a-entity>
@@ -77,15 +83,14 @@ const mapStateToProps = state => ({
   gameOver: state.gameState.gameOver,
   zombieCount: state.gameState.zombies,
   userHealth: state.gameState.player.health,
-  user: state.session,
-  score: state.gameState.score
+  currentLevel: state.gameState.currentLevel
 })
 
 const mapDispatchToProps = dispatch => ({
   resetGame: () => dispatch(resetGame()),
   setHealth: (health) => dispatch(setHealth(health)),
-  updateHighScore: (highScore) => dispatch(updateHighScore(highScore)),
-  nextLevel: () => dispatch(nextLevel())
+  nextLevel: () => dispatch(nextLevel()),
+  setGameOver: () => dispatch(setGameOver())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameEnd);
