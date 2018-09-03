@@ -3,17 +3,23 @@ import { connect } from 'react-redux';
 import { resetGame } from '../actions/game_state_actions';
 import { setHealth } from '../actions/player_actions';
 import { nextLevel } from '../actions/level_actions';
+import { updateHighScore } from '../util/session_api_util';
+
 class GameEnd extends Component {
   constructor(props) {
     super(props);
   }
 
   componentDidUpdate() {
-    if (this.props.gameOver === true) {
-      // setTimeout(() => {
-      //   // document.querySelector('body').removeEventListener('keydown', handler);
-      // }, 0);
-    }
+    let highScore;
+    highScore = this.props.user.highScore < this.props.score ? this.props.score : this.props.user.highScore
+  
+    // if (this.props.gameOver === true) {
+    //   this.props.updateHighScore({
+    //     id: this.props.user.id,
+    //     highScore
+    //   });
+    // }
   }
   
   componentDidMount() {
@@ -60,12 +66,15 @@ class GameEnd extends Component {
 const mapStateToProps = state => ({
   gameOver: state.gameState.gameOver,
   zombieCount: state.gameState.zombies,
-  userHealth: state.gameState.player.health
+  userHealth: state.gameState.player.health,
+  user: state.session,
+  score: state.gameState.score
 })
 
 const mapDispatchToProps = dispatch => ({
   resetGame: () => dispatch(resetGame()),
   setHealth: (health) => dispatch(setHealth(health)),
+  updateHighScore: (highScore) => dispatch(updateHighScore(highScore)),
   nextLevel: () => dispatch(nextLevel())
 });
 

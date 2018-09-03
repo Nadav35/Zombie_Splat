@@ -12,6 +12,7 @@ import Sky from './components/sky';
 import Zombie from './components/zombie';
 import ZombieIndex from './components/zombie_index';
 import { setHealth } from './actions/player_actions';
+import { resetScore } from './actions/score_actions';
 
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
   }
   
   componentDidMount() {
+    this.props.resetScore();
     this.props.setHealth(10);
   }
 
@@ -52,7 +54,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  setHealth: (health) => dispatch(setHealth(health))
+  setHealth: (health) => dispatch(setHealth(health)),
+  resetScore: () => dispatch(resetScore())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
