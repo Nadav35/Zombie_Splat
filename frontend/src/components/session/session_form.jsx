@@ -13,6 +13,7 @@ class SessionForm extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.loginDemoUser = this.loginDemoUser.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   componentDidMount () {
@@ -74,7 +75,12 @@ class SessionForm extends React.Component {
     } else {
       return "";
     }
-    
+  }
+
+  toggleModal (e) {
+    const modal = document.querySelector("#modal");
+    modal.classList.toggle("is-open");
+    // e.currentTarget.classList.toggle("is-open");
   }
 
   render() {
@@ -91,21 +97,18 @@ class SessionForm extends React.Component {
       </div>;
     return (
       <div className="welcome-page">
+        <i onClick={(e) => this.toggleModal(e)} id="info-modal-toggle" className="fas fa-info fa-5x info-modal-icon"></i>
         {/* <div className="title-container">
           <h1>Welcome to Zombiesplat</h1>
           <h3>IN 3D!!!</h3>
-        </div>
-        <h3>IN 3D!!!</h3> */}
-        
-        
+          </div>
+          <h3>IN 3D!!!</h3> */}
         
         <div className="session-container">
           <div className="high-scores">
             <h1>High Scores</h1>
             {this.getHighScore()}
-
-          </div>
-          
+          </div>      
           {/* <h3>IN 3D!!!</h3> */}
           <div className="session-form">
             <form className="form">
@@ -122,7 +125,6 @@ class SessionForm extends React.Component {
                 placeholder="Enter your email"
                 onChange={this.update('email')}
                 type="text"/>
-                {/* <i className="fas fa-envelope-square"></i> */}
               </div>
               
               <div className="password-div">
@@ -133,7 +135,6 @@ class SessionForm extends React.Component {
                 placeholder="Enter your password"
                 onChange={this.update('password')}
                 type="password"/>
-                {/* <i className="fas fa-unlock"></i> */}
               </div>
               
               <div className="buttons">
@@ -147,21 +148,30 @@ class SessionForm extends React.Component {
                   Demo User
                 </button>
               </div>
-              
-              
-
               <div className="form-footer">
-                
-                <aside>or</aside>{this.props.navLink} 
-                
-              
+                <aside>or</aside>{this.props.navLink}                 
               </div>
-
             </form>
           </div>
-          
         </div>
-        
+        <div id="modal" className="modal">
+          <div className="modal-info">
+            <h1>Welcome to Zombie Splat!</h1>
+            <p>
+              This is an immersive virtual reality first person zombie shooter!
+              The goal is to knock down all the zombies before the timer hits 0, 
+              or you run out of health. <br /><br /> 
+              
+              <strong>Game Play Instructions:</strong><br/>
+              To look around, click and drag your mouse around the screen.
+              Press Spacebar to shoot. You may press <strong>R</strong> at any point during the game to restart.
+              Be warned, the clock starts ticking as soon as you login.
+              Good Luck, and have fun!
+
+            </p>
+          </div>
+          <div onClick={(e) => this.toggleModal(e)} id="modal-screen" className=" js-modal-close modal-screen"></div>
+        </div>
       </div>
     );
   }
