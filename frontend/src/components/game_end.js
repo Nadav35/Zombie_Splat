@@ -21,8 +21,6 @@ class GameEnd extends Component {
     }
   }
 
-
-
   componentDidMount() {
     this.props.resetGame();
     this.props.setHealth(10);
@@ -40,7 +38,6 @@ class GameEnd extends Component {
         </a-text>
       )
     } else if (this.props.zombieCount === 0) {
-      // debugger
       if (this.props.currentLevel === 1) {
         setTimeout(() => {
           this.props.nextLevel();

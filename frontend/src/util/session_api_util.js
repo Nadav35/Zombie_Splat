@@ -25,7 +25,6 @@ export const fetchUsers = () => dispatch => {
     .get('/api/users/getUsers')
     .then(res => {
       
-      
       return dispatch(receiveUsers(res.data));
     });
 }

@@ -28,7 +28,6 @@ router.post('/updateHighScore', (req, res) => {
   const highScore = req.body.highScore;
   User.findById(id)
     .then(user => {
-      console.log(user);
       
       user.highScore = req.body.highScore;
       user.save()

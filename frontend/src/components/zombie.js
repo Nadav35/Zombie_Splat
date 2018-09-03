@@ -69,13 +69,10 @@ class Zombie extends Component {
           e.target.body.mass = 9999;
           
           setTimeout(() => {
-            // this.setState({health: this.props.health - 1});
             this.props.setHealth(this.props.health - 1);
           }, 0);
           intervalId = setInterval(() => {
             if (this.state.health > 0) {
-              
-              // this.setState({health: this.props.health - 1});
               this.props.setHealth(this.props.health - 1);
             }
           }, 5000);
