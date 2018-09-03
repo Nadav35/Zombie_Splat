@@ -91,6 +91,7 @@ class SessionForm extends React.Component {
       </div>;
     return (
       <div className="welcome-page">
+        <i id="info-modal-toggle" className="fas fa-info fa-5x info-modal-icon"></i>
         {/* <div className="title-container">
           <h1>Welcome to Zombiesplat</h1>
           <h3>IN 3D!!!</h3>
@@ -146,6 +147,19 @@ class SessionForm extends React.Component {
               </div>
             </form>
           </div>
+        </div>
+        <div id="modal" className="modal">
+          <div className="modal-info">
+            <h1>Welcome to Zombie Splat!</h1>
+            <p>This is a data visualization using D3.js and the Last.fm API to
+              display top hits and top artist played on Last.fm last week.
+                You can hover over the bubbles to show the song or artist, and see how many
+                listeners they had last week. You can double click a bubble to view the artist or song page on 
+                Last.fm. The bubbles are also interactive so you can drag them around
+                the screen!
+            </p>
+          </div>
+          <div id="modal-screen" className=" js-modal-close modal-screen"></div>
         </div>
       </div>
     );

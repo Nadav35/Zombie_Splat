@@ -227,3 +227,50 @@ a {
 a:hover {
   color: red;
 }
+ 
+/* Modal */
+.info-modal-icon {
+  float: right;
+  padding: 5px;
+}
+
+.modal {
+  display: none;
+}
+
+.modal.is-open {
+  display: block;
+}
+
+.modal-screen {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.7);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.modal-info {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  margin-left: -220px;
+  width: 365px;
+  height: 355px;
+  padding: 20px;
+  background: #fff;
+  z-index: 3;
+  border-radius: 5px;
+  border: 1px solid #000;
+}
+
+.modal-info p {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.modal-info h1 {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 500;
+}
