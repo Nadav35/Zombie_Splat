@@ -230,8 +230,15 @@ a:hover {
  
 /* Modal */
 .info-modal-icon {
-  float: right;
-  padding: 5px;
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  color: white;
+  z-index: 10;
+}
+
+.info-modal-icon:hover {
+  cursor: pointer;
 }
 
 .modal {
@@ -273,4 +280,5 @@ a:hover {
 .modal-info h1 {
   font-family: 'Archivo', sans-serif;
   font-weight: 500;
+  font-size: 31px;
 }
