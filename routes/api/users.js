@@ -23,7 +23,6 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
 router.post('/updateHighScore', (req, res) => {
   
   const id = req.body.id;
-  console.log(id);
   
   const highScore = req.body.highScore;
   User.findById(id)
