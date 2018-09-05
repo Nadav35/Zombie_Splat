@@ -5,14 +5,12 @@ const passport = require('passport');
 const users = require("./routes/api/users");
 const path = require('path');
 
-const db = require('./config/get_keys');
-
 require('./config/passport')(passport);
 
 const app = express();
 
 // Connect the database
-// const db = require('./config/keys').prodMongoURI;
+const db = require('./config/keys').mongoURI;
 
 mongoose.connect(db, {
     useNewUrlParser: true
